@@ -6,46 +6,51 @@
 #    By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 16:06:48 by msolinsk          #+#    #+#              #
-#    Updated: 2024/04/25 17:14:33 by msolinsk         ###   ########.fr        #
+#    Updated: 2024/05/07 19:40:15 by msolinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-CC = cc
+CC = clang
 CFLAGS = -Wall -Wextra -Werror
-MLXFLAGS = -Lmlx_linux -Lmlx_Linux -lXext -lX11 -lm -lz
 
-LIBFT = libft/
-MINILIBX = mlx_linux/
+MLXFLAGSO = -I/usr/include -Imlx_linux -O3
+MLXFLAGSN = -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+
+LIBFT_DIR = libft/
+MLX_DIR = mlx_linux/
+UTILS_DIR = src/utils/
 
 FILES = \
-		so_long.c
+		src/utils/ft_images.c
 
 OBJS = ${FILES:.c=.o}
 
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
+	$(CC) $(CFLAGS) $(MLXFLAGSO) -c $< -o ${FILES:.c=.o}
 
 compile_dep:
-	@make -C $(MINILIBX)
-	@cp $(MINILIBX)/libmlx.a .
-	@cp $(MINILIBX)/libmlx_Linux.a .
-	@mv $(MINILIBX)/libmlx.a .
-	@mv $(MINILIBX)/libmlx_Linux.a .
-	@make -C $(LIBFT)
-	@cp $(LIBFT)/libft.a .
-	@mv $(LIBFT)/libft.a .
+	@make -C $(MLX_DIR)
+	@cp $(MLX_DIR)/libmlx.a .
+	@cp $(MLX_DIR)/libmlx_Linux.a .
+	@mv $(MLX_DIR)/libmlx.a .
+	@mv $(MLX_DIR)/libmlx_Linux.a .
+	@make -C $(LIBFT_DIR)
+	@cp $(LIBFT_DIR)/libft.a .
+	@mv $(LIBFT_DIR)/libft.a .
+	echo "\n\n" $(OBJS) "\n\n"
 
 $(NAME): compile_dep $(OBJS)
-	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) libft.a libmlx.a libmlx_Linux.a -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXFLAGSN) so_long.c $(OBJS) libft.a libmlx.a libmlx_Linux.a -o $(NAME)
+
 
 clean:
 	rm -f $(OBJS)
-	@make -C $(LIBFT) clean
-	@make -C $(MINILIBX) clean
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLX_DIR) clean
 
 
 fclean: clean
