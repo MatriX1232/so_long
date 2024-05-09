@@ -6,13 +6,13 @@
 #    By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 16:06:48 by msolinsk          #+#    #+#              #
-#    Updated: 2024/05/07 19:40:15 by msolinsk         ###   ########.fr        #
+#    Updated: 2024/05/09 16:43:24 by msolinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-CC = clang
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 MLXFLAGSO = -I/usr/include -Imlx_linux -O3
@@ -23,14 +23,15 @@ MLX_DIR = mlx_linux/
 UTILS_DIR = src/utils/
 
 FILES = \
-		src/utils/ft_images.c
+		src/ft_images.c \
+		src/ft_draw.c
 
 OBJS = ${FILES:.c=.o}
 
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(MLXFLAGSO) -c $< -o ${FILES:.c=.o}
+	$(CC) $(CFLAGS) $(MLXFLAGSO) -c $< -o ${<:.c=.o}
 
 compile_dep:
 	@make -C $(MLX_DIR)

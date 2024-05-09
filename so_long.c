@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:22:55 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/05/07 20:13:40 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:17:13 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,59 +39,39 @@ void	my_mlx_pixel_put(t_sprite *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-t_sprite	*xpm_load_image(void *mlx, char *path)
-{
-	static t_sprite	ret;
-	int			width;
-	int			height;
-
-	// ret = (t_sprite *) malloc(1 * sizeof(t_sprite));
-	// ret->img = NULL;
-	// ret->addr = NULL;
-	// ret->width = 0;
-	// ret->heigth = 0;
-	// ret->bits_per_pixel = 0;
-	// ret->line_length = 0;
-	// ret->endian = 0;
-	width = 0;
-	height = 0;
-	// img = NULL;
-	// path = ft_fix_path(path);
-	ret.img = mlx_xpm_file_to_image(mlx, path, &width, &height);
-	ret.width = width;
-	ret.heigth = height;
-	// ret->addr = mlx_get_data_addr(&(ret->img), &(ret->bits_per_pixel), &(ret->line_length), &(ret->endian));
-	printf("Path: %s | Img width: %d | Img heigth: %d\n", path, ret.width, ret.heigth);
-	return (&ret);
-}
 
 int	main()
 {
-	void	*mlx;
-	void	*mlx_win;
+	t_so_long	so_long;
+	// void	*mlx;
+	// void	*mlx_win;
 
-	int		map_width;
-	int		map_heigth;
-	int		map_width_tiles = 10;
-	int		map_heigth_tiles = 6;
+	int			map_width;
+	int			map_height;
+	int			map_width_tiles = 10;
+	int			map_heigth_tiles = 6;
 
 	// t_data	**tiles;
 	t_sprite	*background;
 	t_sprite	*player;
 
-	mlx = mlx_init();
+	so_long.mlx = mlx_init();
 
-	background = xpm_load_image(mlx, "textures/other_0.xpm");
-	player = xpm_load_image(mlx, "textures/cat_0.xpm");
+	background = xpm_load_image(so_long.mlx, "textures/other_0.xpm");
+	player = xpm_load_image(so_long.mlx, "textures/cat_0.xpm");
+
+	ft_print_img_info(background);
+	ft_print_img_info(player);
+
 	// background->width = 0;
 	// background->heigth = 0;
 	// background = mlx_xpm_file_to_image(mlx, "textures/other_0.xpm", &background->width, &background->heigth);
 
 	map_width = background->width * map_width_tiles;
-	map_heigth = background->heigth * map_heigth_tiles;
+	map_height = background->height * map_heigth_tiles;
 
 	// img = mlx_png_file_to_image(mlx, path, &img_width, &img_height);
-	mlx_win = mlx_new_window(mlx, map_width, map_heigth, "SO_LONG GAME");
+	so_long.mlx_win = mlx_new_window(so_long.mlx, map_width, map_height, "SO_LONG GAME");
 
 
 
@@ -103,10 +83,12 @@ int	main()
 	{
 		for (int x=0; x < map_width_tiles; x++)
 		{
-			mlx_put_image_to_window(mlx, mlx_win, background->img, x * (background->width), y * (background->heigth));
+			mlx_put_image_to_window(so_long.mlx, so_long.mlx_win, background->img, x * (background->width), y * (background->height));
 		}
 	}
-	mlx_put_image_to_window(mlx, mlx_win, player->img, 0, 0);
+	// mlx_put_image_to_window(so_long.mlx, so_long.mlx_win, player->img, 0, 0);
+	ft_put_alpha_image(&so_long, player, 0, 0, 0xFF000000);
+
 	// img.img = mlx_new_image(mlx, 512, 512);
 	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 
@@ -114,12 +96,14 @@ int	main()
 	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
 
 	printf("Hex color: %X | %X\n", 0xFFE5F9FF, create_trgb(255, 229, 249, 255));
-	mlx_destroy_image(mlx, background->img);
+
+	mlx_destroy_image(so_long.mlx, background->img);
 	free(background);
-	mlx_destroy_image(mlx, player->img);
+	mlx_destroy_image(so_long.mlx, player->img);
 	free(player);
 
-	mlx_loop(mlx);
+	mlx_loop(so_long.mlx);
+	mlx_destroy_window(so_long.mlx, so_long.mlx_win);
 
 	return (0);
 }
