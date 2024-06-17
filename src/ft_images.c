@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:48:53 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/05/09 17:05:58 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:17:44 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@ t_sprite	*xpm_load_image(void *mlx, char *path)
 	ret->img = mlx_xpm_file_to_image(mlx, path, &(ret->width), &(ret->height));
 	ret->addr = mlx_get_data_addr(ret->img, &(ret->bits_per_pixel), &(ret->line_length), &(ret->endian));
 	return (ret);
+}
+
+void put_image_with_alpha(t_sprite *main_img, t_sprite *src, int x_offset, int y_offset) {
+    for (int y = 0; y < src->height; y++) {
+        for (int x = 0; x < src->width; x++) {
+            Color src_color = get_pixel(src, x, y);
+            put_pixel_with_alpha(main_img, x + x_offset, y + y_offset, src_color);
+        }
+    }
 }
 
 // t_sprite	*xpm_load_image(void *mlx, char *path)
