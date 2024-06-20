@@ -6,21 +6,20 @@
 #    By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 16:06:48 by msolinsk          #+#    #+#              #
-#    Updated: 2024/06/20 16:33:12 by msolinsk         ###   ########.fr        #
+#    Updated: 2024/06/20 17:46:06 by msolinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-CC = cc
+CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
-MLXFLAGSO = -I/usr/include -Imlx_linux -O3
-MLXFLAGSN = -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -D LINUX
+MLXFLAGSO = -I/usr/include -Imlx_linux -O3 -no-pie
+MLXFLAGSN = -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -D LINUX -no-pie
 
 LIBFT_DIR = libft/
 MLX_DIR = mlx_linux/
-MLX_TRANS = mlx_transparent/
 UTILS_DIR = src/utils/
 
 FILES = \
@@ -44,9 +43,6 @@ compile_dep:
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT_DIR)/libft.a .
 	@mv $(LIBFT_DIR)/libft.a .
-	@make -C $(MLX_TRANS)
-	cp $(MLX_TRANS)/libtransparency.a .
-	@mv $(MLX_TRANS)/libtransparency.a .
 	echo "\n\n" $(OBJS) "\n\n"
 
 $(NAME): compile_dep $(OBJS)
