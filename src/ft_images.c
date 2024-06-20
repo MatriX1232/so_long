@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:48:53 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/17 14:17:44 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:43:34 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@
 
 void	ft_print_img_info(t_sprite *img)
 {
-	printf("Path: %s\n", img->addr);
-	printf("Bits_per_pixel: %d\n", img->bits_per_pixel);
-	printf("Line_length: %d\n", img->line_length);
-	printf("Width | Height: %d x %d\n", img->width, img->height);
-	printf("Endian: %d\n\n", img->endian);
+	if (img)
+	{
+		printf("Path: %s\n", img->addr);
+		printf("Bits_per_pixel: %d\n", img->bits_per_pixel);
+		printf("Line_length: %d\n", img->line_length);
+		printf("Width | Height: %d x %d\n", img->width, img->height);
+		printf("Endian: %d\n\n", img->endian);
+	}
 }
 
 t_sprite	*xpm_load_image(void *mlx, char *path)
@@ -51,14 +54,14 @@ t_sprite	*xpm_load_image(void *mlx, char *path)
 	return (ret);
 }
 
-void put_image_with_alpha(t_sprite *main_img, t_sprite *src, int x_offset, int y_offset) {
-    for (int y = 0; y < src->height; y++) {
-        for (int x = 0; x < src->width; x++) {
-            Color src_color = get_pixel(src, x, y);
-            put_pixel_with_alpha(main_img, x + x_offset, y + y_offset, src_color);
-        }
-    }
-}
+// void put_image_with_alpha(t_sprite *main_img, t_sprite *src, int x_offset, int y_offset) {
+//     for (int y = 0; y < src->height; y++) {
+//         for (int x = 0; x < src->width; x++) {
+//             Color src_color = get_pixel(src, x, y);
+//             put_pixel_with_alpha(main_img, x + x_offset, y + y_offset, src_color);
+//         }
+//     }
+// }
 
 // t_sprite	*xpm_load_image(void *mlx, char *path)
 // {
