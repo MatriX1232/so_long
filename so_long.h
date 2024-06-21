@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:12:24 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/20 15:54:12 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/21 18:13:01 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,32 @@
 # include "mlx_linux/mlx.h"
 # include "mlx_linux/mlx_int.h"
 
-// #include "mlx_transparent/include/libtransparency.h"
+# include "include/ft_map.h"
+# include "include/ft_window.h"
 
-#define BPX 100
+// minimal color codes
+# define END "\x1b[0m"
+# define BOLD '\x1b[1m'
+# define UNDER '\x1b[4m'
+# define REV '\x1b[7m'
+# define GREY '\x1b[30m'
+# define RED "\x1b[31m"
+# define GREEN '\x1b[32m'
+# define YELLOW '\x1b[33m'
+# define BLUE '\x1b[34m'
+# define PURPLE '\x1b[35m'
+# define CYAN '\x1b[36m'
+# define WHITE '\x1b[37m'
 
-typedef struct {
-    int r;
-    int g;
-    int b;
-    int a;
-} Color;
+# define BPX 100
+
+typedef struct s_Color
+{
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+}	t_Color;
 
 typedef struct s_sprite
 {
@@ -39,24 +55,47 @@ typedef struct s_sprite
 	int		endian;
 }	t_sprite;
 
-typedef struct {
-    void		*mlx;
-    void		*win;
-    t_sprite	main_img;
-} t_so_long;
+enum e_action
+{
+	MOVE,
+	UI
+};
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
+typedef struct s_queue
+{
+	enum e_action	action;
+	t_sprite		*sprite;
+	t_point			begin;
+	t_point			dest;
+}	t_queue;
+
+typedef struct s_so_long
+{
+	void		*mlx;
+	void		*win;
+	t_sprite	main_img;
+	t_queue		queue;
+	t_map		*map;
+	t_sprite	**sprites;
+}	t_so_long;
 
 void			ft_print_img_info(t_sprite *img);
 t_sprite		*xpm_load_image(void *mlx, char *path);
-// unsigned int	ft_get_pixel_value(t_sprite *img, int x, int y);
-// void			ft_put_alpha_image(t_so_long *so_long, t_sprite *img, int x, int y, unsigned int alpha_color);
-// char			*ft_convert_aplha(t_sprite *img, int desired_aplha);
-Color			blend(Color src, Color dst);
-// Color			ft_get_background_pixel(unsigned int color);
-Color			int_to_color(int color);
-// Color			get_pixel(t_sprite *mlx_data, int x, int y);
-int				color_to_int(Color color);
-// void 			put_pixel_with_alpha(t_sprite *sprite, int x, int y, Color color);
-// void 			put_pixel(t_sprite *mlx_data, int x, int y, Color color);
-// void			put_image_with_alpha(t_sprite *main_img, t_sprite *src, int x_offset, int y_offset);
+t_sprite		**ft_load_sprites(void *mlx);
+t_sprite		**ft_malloc_sprites();
+
+void			put_pixel_img(t_sprite *img, int x, int y, int color);
+void			put_img_to_img(t_sprite *dst, t_sprite *src, int x, int y);
+unsigned int	get_pixel_img(t_sprite *img, int x, int y);
+
+t_Color			blend(t_Color src, t_Color dst);
+t_Color			int_to_color(int color);
+int				color_to_int(t_Color color);
 
 #endif
