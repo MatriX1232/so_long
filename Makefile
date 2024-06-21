@@ -6,7 +6,7 @@
 #    By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 16:06:48 by msolinsk          #+#    #+#              #
-#    Updated: 2024/06/20 17:46:06 by msolinsk         ###   ########.fr        #
+#    Updated: 2024/06/21 12:58:35 by msolinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = so_long
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
-MLXFLAGSO = -I/usr/include -Imlx_linux -O3 -no-pie
+MLXFLAGSO = -I/usr/include -Imlx_linux -O3
 MLXFLAGSN = -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -D LINUX -no-pie
 
 LIBFT_DIR = libft/
