@@ -6,7 +6,7 @@
 #    By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 16:06:48 by msolinsk          #+#    #+#              #
-#    Updated: 2024/06/21 12:58:35 by msolinsk         ###   ########.fr        #
+#    Updated: 2024/06/21 13:22:50 by msolinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ MLX_DIR = mlx_linux/
 UTILS_DIR = src/utils/
 
 FILES = \
+		gnl/get_next_line.c \
+		gnl/get_next_line_utils.c \
 		src/ft_images.c \
 		src/ft_draw.c \
 		src/ft_colors.c
