@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:48:04 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/21 18:12:49 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:17:52 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ enum
 	ON_DESTROY = 17
 };
 
-int	ft_EXIT();
+int	ft_EXIT(t_so_long *so_long);
 
 #endif

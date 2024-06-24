@@ -6,11 +6,12 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/21 18:13:50 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:26:30 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "include/ft_window.h"
 
 int	keyhook(int keycode, t_so_long *so_long)
 {
@@ -67,17 +68,16 @@ int	main()
 
 	mlx_put_image_to_window(so_long.mlx, so_long.win, so_long.main_img.img, 0, 0);
 
-	mlx_destroy_image(so_long.mlx, so_long.sprites[1]->img);
-	free(so_long.sprites[1]);
-	mlx_destroy_image(so_long.mlx, so_long.sprites[4]->img);
-	free(so_long.sprites[4]);
+	// mlx_destroy_image(so_long.mlx, so_long.sprites[1]->img);
+	// free(so_long.sprites[1]);
+	// mlx_destroy_image(so_long.mlx, so_long.sprites[4]->img);
+	// free(so_long.sprites[4]);
 
 
 	mlx_key_hook(so_long.win, keyhook, &so_long);
 	mlx_hook(so_long.win, ON_DESTROY, 0, ft_EXIT, &so_long);
 
 	mlx_loop(so_long.mlx);
-	mlx_destroy_window(so_long.mlx, so_long.win);
 
 	return (0);
 }

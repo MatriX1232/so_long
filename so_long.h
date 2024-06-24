@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:12:24 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/21 18:13:01 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:17:09 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "mlx_linux/mlx_int.h"
 
 # include "include/ft_map.h"
-# include "include/ft_window.h"
 
 // minimal color codes
 # define END "\x1b[0m"
