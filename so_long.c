@@ -6,12 +6,13 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/24 16:26:30 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:00:39 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "include/ft_window.h"
+#include "include/get_next_line.h"
 
 int	keyhook(int keycode, t_so_long *so_long)
 {
@@ -54,7 +55,6 @@ int	main()
 	so_long.sprites[1] = background;
 	so_long.sprites[4] = player;
 	// so_long.sprites = ft_load_sprites(so_long.mlx);
-
 
 	for (int y=0; y < map_width_tiles; y++)
 	{
