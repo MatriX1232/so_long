@@ -6,9 +6,11 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:12:24 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/25 12:52:19 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:25:59 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -18,6 +20,7 @@
 # include "mlx_linux/mlx_int.h"
 
 # include "include/ft_map.h"
+# include "include/ft_structures.h"
 
 // minimal color codes
 # define END "\x1b[0m"
@@ -35,54 +38,54 @@
 
 # define BPX 100
 
-typedef struct s_Color
-{
-	int	r;
-	int	g;
-	int	b;
-	int	a;
-}	t_Color;
+// typedef struct s_Color
+// {
+// 	int	r;
+// 	int	g;
+// 	int	b;
+// 	int	a;
+// }	t_Color;
 
-typedef struct s_sprite
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		width;
-	int		height;
-	int		endian;
-}	t_sprite;
+// typedef struct s_sprite
+// {
+// 	void	*img;
+// 	char	*addr;
+// 	int		bits_per_pixel;
+// 	int		line_length;
+// 	int		width;
+// 	int		height;
+// 	int		endian;
+// }	t_sprite;
 
-enum e_action
-{
-	MOVE,
-	UI
-};
+// enum e_action
+// {
+// 	MOVE,
+// 	UI
+// };
 
-typedef struct s_point
-{
-	int	x;
-	int	y;
-}	t_point;
+// typedef struct s_point
+// {
+// 	int	x;
+// 	int	y;
+// }	t_point;
 
-typedef struct s_queue
-{
-	enum e_action	action;
-	t_sprite		*sprite;
-	t_point			begin;
-	t_point			dest;
-}	t_queue;
+// typedef struct s_queue
+// {
+// 	enum e_action	action;
+// 	t_sprite		*sprite;
+// 	t_point			begin;
+// 	t_point			dest;
+// }	t_queue;
 
-typedef struct s_so_long
-{
-	void		*mlx;
-	void		*win;
-	t_sprite	main_img;
-	t_queue		queue;
-	t_map		*map;
-	t_sprite	**sprites;
-}	t_so_long;
+// typedef struct s_so_long
+// {
+// 	void		*mlx;
+// 	void		*win;
+// 	t_sprite	main_img;
+// 	t_queue		queue;
+// 	t_map		*map;
+// 	t_sprite	**sprites;
+// }	t_so_long;
 
 void			ft_print_img_info(t_sprite *img);
 t_sprite		*xpm_load_image(void *mlx, char *path);

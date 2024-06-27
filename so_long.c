@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/25 13:00:39 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:54:15 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,19 @@ int	main()
 	int			map_height_tiles = 6 / 2;
 	t_sprite	*background;
 	t_sprite	*player;
+	t_sprite	*mainBG;
 
 	so_long.mlx = mlx_init();
 
 	background = xpm_load_image(so_long.mlx, "textures/gate.xpm");
 	player = xpm_load_image(so_long.mlx, "textures/cat_0.xpm");
 
-	map_width = background->width * map_width_tiles;
-	map_height = background->height * map_height_tiles;
+
+	so_long.map = ft_load_map("maps/1.ber");
+	printf("<MAP> | Width: %d | Height: %d\n", so_long.map->width, so_long.map->height);
+	map_width = so_long.map->width * map_width_tiles;
+	map_height = so_long.map->height * map_height_tiles;
+
 
 	so_long.win = mlx_new_window(so_long.mlx, map_width, map_height, "SO_LONG GAME");
 	so_long.main_img.img = mlx_new_image(so_long.mlx, map_width, map_height);
@@ -50,19 +55,23 @@ int	main()
 	ft_print_img_info(background);
 	ft_print_img_info(player);
 
-	so_long.map = ft_load_map("maps/1.ber");
+
+	mainBG = ft_process_map(&so_long, so_long.map);
+	put_img_to_img(&so_long.main_img, mainBG, 0, 0);
+
+
 	so_long.sprites = ft_malloc_sprites();
 	so_long.sprites[1] = background;
 	so_long.sprites[4] = player;
 	// so_long.sprites = ft_load_sprites(so_long.mlx);
 
-	for (int y=0; y < map_width_tiles; y++)
-	{
-		for (int x=0; x < map_width_tiles; x++)
-		{
-			put_img_to_img(&so_long.main_img, so_long.sprites[1], x * (so_long.sprites[1]->width), y * (so_long.sprites[1]->height));
-		}
-	}
+	// for (int y=0; y < map_width_tiles; y++)
+	// {
+	// 	for (int x=0; x < map_width_tiles; x++)
+	// 	{
+	// 		put_img_to_img(&so_long.main_img, so_long.sprites[1], x * (so_long.sprites[1]->width), y * (so_long.sprites[1]->height));
+	// 	}
+	// }
 
 	// put_img_to_img(&so_long.main_img, player, 0, 0);
 
