@@ -6,11 +6,9 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:48:04 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/27 10:10:22 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/28 13:54:35 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#pragma once
 
 #ifndef FT_WINDOW_H
 # define FT_WINDOW_H
@@ -29,5 +27,6 @@ enum
 };
 
 int	ft_EXIT(t_so_long *so_long);
+int	ft_RESIZE(int width, int height, t_so_long *so_long);
 
 #endif

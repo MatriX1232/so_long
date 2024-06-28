@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:24:04 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/27 10:25:56 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:13:57 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_sprite
 	int		width;
 	int		height;
 	int		endian;
+	char	*path;
 }	t_sprite;
 
 enum e_action
@@ -73,6 +74,8 @@ typedef struct s_so_long
 {
 	void		*mlx;
 	void		*win;
+	int			win_width;
+	int			win_height;
 	t_sprite	main_img;
 	t_queue		queue;
 	t_map		*map;

@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/27 10:54:15 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:20:02 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,21 @@ int	main()
 	t_so_long	so_long;
 	int			map_width;
 	int			map_height;
-	int			map_width_tiles = 10 / 2;
-	int			map_height_tiles = 6 / 2;
-	t_sprite	*background;
-	t_sprite	*player;
+	// int			map_width_tiles = 10 / 2;
+	// int			map_height_tiles = 6 / 2;
+	// t_sprite	*background;
+	// t_sprite	*player;
 	t_sprite	*mainBG;
 
 	so_long.mlx = mlx_init();
 
-	background = xpm_load_image(so_long.mlx, "textures/gate.xpm");
-	player = xpm_load_image(so_long.mlx, "textures/cat_0.xpm");
-
+	// background = xpm_load_image(so_long.mlx, "textures/gate.xpm");
+	// player = xpm_load_image(so_long.mlx, "textures/cat_0.xpm");
 
 	so_long.map = ft_load_map("maps/1.ber");
 	printf("<MAP> | Width: %d | Height: %d\n", so_long.map->width, so_long.map->height);
-	map_width = so_long.map->width * map_width_tiles;
-	map_height = so_long.map->height * map_height_tiles;
+	map_width = so_long.map->width * 100;
+	map_height = so_long.map->height * 100;
 
 
 	so_long.win = mlx_new_window(so_long.mlx, map_width, map_height, "SO_LONG GAME");
@@ -52,22 +51,18 @@ int	main()
 	so_long.main_img.height = map_height;
 
 	ft_print_img_info(&so_long.main_img);
-	ft_print_img_info(background);
-	ft_print_img_info(player);
+	// ft_print_img_info(background);
+	// ft_print_img_info(player);
 
+
+	so_long.sprites = ft_load_sprites(so_long.mlx);
 
 	mainBG = ft_process_map(&so_long, so_long.map);
 	put_img_to_img(&so_long.main_img, mainBG, 0, 0);
 
-
-	so_long.sprites = ft_malloc_sprites();
-	so_long.sprites[1] = background;
-	so_long.sprites[4] = player;
-	// so_long.sprites = ft_load_sprites(so_long.mlx);
-
-	// for (int y=0; y < map_width_tiles; y++)
+	// for (int y=0; y < 3; y++)
 	// {
-	// 	for (int x=0; x < map_width_tiles; x++)
+	// 	for (int x=0; x < 6; x++)
 	// 	{
 	// 		put_img_to_img(&so_long.main_img, so_long.sprites[1], x * (so_long.sprites[1]->width), y * (so_long.sprites[1]->height));
 	// 	}
@@ -77,14 +72,9 @@ int	main()
 
 	mlx_put_image_to_window(so_long.mlx, so_long.win, so_long.main_img.img, 0, 0);
 
-	// mlx_destroy_image(so_long.mlx, so_long.sprites[1]->img);
-	// free(so_long.sprites[1]);
-	// mlx_destroy_image(so_long.mlx, so_long.sprites[4]->img);
-	// free(so_long.sprites[4]);
-
-
 	mlx_key_hook(so_long.win, keyhook, &so_long);
 	mlx_hook(so_long.win, ON_DESTROY, 0, ft_EXIT, &so_long);
+	// mlx_hook(so_long.win, 9, 1L << 4, ft_RESIZE, &so_long);
 
 	mlx_loop(so_long.mlx);
 

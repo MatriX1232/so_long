@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:05:40 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/27 10:36:24 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:20:06 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,29 +98,21 @@ t_map *ft_load_map(char *path)
 	if (!map->grid)
 		return (free(map), NULL);
 	map->height = 0;
+	close(fd);
+	fd = open(path, O_RDONLY);
 	while ((line = get_next_line(fd)) != NULL)
 	{
+		// printf("<LINE> | %s", line);
 		if (map->height == 0)
 			map->width = ft_strlen(line);
 		map->grid[map->height] = line;
 		map->height++;
-		printf("<MAP> | Width: %d | Height: %d\n", map->width, map->height);
-		// if (map->height >= grid_size)
-		// {
-		// 	char **new_grid = realloc(map->grid, grid_size * sizeof(char *));
-		// 	if (!new_grid)
-		// 	{
-		// 		for (i = 0; i < map->height; i++)
-		// 			free(map->grid[i]);
-		// 		return (free(map->grid), free(map), NULL);
-		// 	}
-		// 	map->grid = new_grid;
-		// }
-		// map->grid[map->height] = line;
-		// map->height++;
 	}
 	close(fd);
-	return map;
+	write(1, GREEN, ft_strlen(GREEN));
+	write(1, "Map loaded successfully!\n", 26);
+	write(1, END, ft_strlen(END));
+	return (map);
 }
 
 t_sprite	*ft_process_map(t_so_long *so_long, t_map *map)
