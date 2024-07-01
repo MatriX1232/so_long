@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:22:17 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/21 15:15:14 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:28:37 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,11 @@ t_Color	blend(t_Color src, t_Color dst)
 	result.b = (int)(src.b * alpha + dst.b * (1 - alpha));
 	result.a = 255;
 	return (result);
+}
+
+void	ft_cprint(char *color, char *str)
+{
+	write(1, color, ft_strlen(color));
+	write(1, str, ft_strlen(str));
+	write(1, END, ft_strlen(END));
 }

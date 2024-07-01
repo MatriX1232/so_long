@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:05:40 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/28 14:20:06 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:01:12 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,11 @@ int	ft_get_map_height(int fd)
 // 	return (map);
 // }
 
-t_map *ft_load_map(char *path)
+t_map	*ft_load_map(char *path)
 {
 	int		fd;
 	char	*line;
 	t_map	*map;
-	// int		i;
-	// int		grid_size;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
@@ -102,16 +100,15 @@ t_map *ft_load_map(char *path)
 	fd = open(path, O_RDONLY);
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		// printf("<LINE> | %s", line);
 		if (map->height == 0)
-			map->width = ft_strlen(line);
-		map->grid[map->height] = line;
+			map->width = ft_strlen(line) - 1;
+		map->grid[map->height] = ft_substr(line, 0, ft_strlen(line) - 1);
+		free(line);
+		// printf("%s", map->grid[map->height]);
 		map->height++;
 	}
 	close(fd);
-	write(1, GREEN, ft_strlen(GREEN));
-	write(1, "Map loaded successfully!\n", 26);
-	write(1, END, ft_strlen(END));
+	ft_cprint(GREEN, "Map loaded successfully!\n");
 	return (map);
 }
 
@@ -121,45 +118,60 @@ t_sprite	*ft_process_map(t_so_long *so_long, t_map *map)
 	int			x;
 	t_sprite	*img;
 
-	if (!so_long || !map)
+	if (!so_long || !map || !map->grid)
 		return (ft_print_error("Faced ERROR when processing map!", NULL), NULL);
 	img = (t_sprite *) malloc(1 * sizeof(t_sprite));
 	if (!img)
 		return (NULL);
-	img->img = mlx_new_image(so_long->mlx, map->width * 100, map->height * 100);
+	img->img = mlx_new_image(so_long->mlx, so_long->win_width, so_long->win_height);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	img->width = map->width * 100;
+	img->height = map->height * 100;
 	y = 0;
 	while (y < map->height)
 	{
 		x = 0;
 		while (x < map->width)
 		{
+			if (map->grid[y][x] == '\0')
+				break ;
 			switch (map->grid[y][x])
 			{
-			case '0':
-				put_img_to_img(img, so_long->sprites[0], x * 100, y * 100);
-				break;
+				case '0':
+					// put_img_to_img(img, so_long->sprites[0], x * 100, y * 100);
+					break ;
 
-			case '1':
-				put_img_to_img(img, so_long->sprites[1], x * 100, y * 100);
-				break;
+				case '1':
+					put_img_to_img(img, so_long->sprites[1], x * 100, y * 100);
+					// mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[1]->img, x * 100, y * 100);
+					break ;
 
-			case 'C':
-				put_img_to_img(img, so_long->sprites[2], x * 100, y * 100);
-				break;
+				case 'C':
+					put_img_to_img(img, so_long->sprites[2], x * 100, y * 100);
+					// mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[2]->img, x * 100, y * 100);
+					break ;
 
-			case '3':
-				put_img_to_img(img, so_long->sprites[3], x * 100, y * 100);
-				break;
+				case 'E':
+					put_img_to_img(img, so_long->sprites[3], x * 100, y * 100);
+					// mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[3]->img, x * 100, y * 100);
+					break ;
 
-			case 'P':
-				put_img_to_img(img, so_long->sprites[4], x * 100, y * 100);
-				break;
+				case 'P':
+					put_img_to_img(img, so_long->sprites[4], x * 100, y * 100);
+					// mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[4]->img, x * 100, y * 100);
+					break ;
 
-			default:
-				break;
+				default:
+					ft_cprint(RED, "Encountered not supportted character | ");
+					printf("%c | %d\n", map->grid[y][x], map->grid[y][x]);
+					// write(1, &map->grid[y][x], 1);
+					// write(1, "\n", 1);
+					break;
 			}
+			x++;
 		}
+		y++;
 	}
+	ft_cprint(GREEN, "Map sprite generated successfully!\n");
 	return (img);
 }

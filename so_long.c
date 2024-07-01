@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/28 14:20:02 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:18:44 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main()
 	// background = xpm_load_image(so_long.mlx, "textures/gate.xpm");
 	// player = xpm_load_image(so_long.mlx, "textures/cat_0.xpm");
 
-	so_long.map = ft_load_map("maps/1.ber");
+	so_long.map = ft_load_map("maps/mini4.ber");
 	printf("<MAP> | Width: %d | Height: %d\n", so_long.map->width, so_long.map->height);
 	map_width = so_long.map->width * 100;
 	map_height = so_long.map->height * 100;
@@ -50,6 +50,9 @@ int	main()
 	so_long.main_img.width = map_width;
 	so_long.main_img.height = map_height;
 
+	so_long.win_width = map_width;
+	so_long.win_height = map_height;
+
 	ft_print_img_info(&so_long.main_img);
 	// ft_print_img_info(background);
 	// ft_print_img_info(player);
@@ -58,7 +61,9 @@ int	main()
 	so_long.sprites = ft_load_sprites(so_long.mlx);
 
 	mainBG = ft_process_map(&so_long, so_long.map);
-	put_img_to_img(&so_long.main_img, mainBG, 0, 0);
+	if (!mainBG) write(1, "", 1);
+	// put_img_to_img(&so_long.main_img, mainBG, 0, 0);
+	// mlx_put_image_to_window(so_long.mlx, so_long.win, mainBG, 0, 0);
 
 	// for (int y=0; y < 3; y++)
 	// {
@@ -68,9 +73,9 @@ int	main()
 	// 	}
 	// }
 
-	// put_img_to_img(&so_long.main_img, player, 0, 0);
+	// put_img_to_img(&so_long.main_img, so_long.sprites[4], 0, 0);
 
-	mlx_put_image_to_window(so_long.mlx, so_long.win, so_long.main_img.img, 0, 0);
+	// mlx_put_image_to_window(so_long.mlx, so_long.win, so_long.main_img.img, 0, 0);
 
 	mlx_key_hook(so_long.win, keyhook, &so_long);
 	mlx_hook(so_long.win, ON_DESTROY, 0, ft_EXIT, &so_long);

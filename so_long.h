@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:12:24 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/28 13:27:34 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:29:44 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@
 void			ft_print_img_info(t_sprite *img);
 t_sprite		*xpm_load_image(void *mlx, char *path);
 t_sprite		**ft_load_sprites(void *mlx);
-t_sprite		**ft_malloc_sprites();
+t_sprite		**ft_malloc_sprites(void);
 
 void			put_pixel_img(t_sprite *img, int x, int y, int color);
 void			put_img_to_img(t_sprite *dst, t_sprite *src, int x, int y);
@@ -99,5 +99,7 @@ unsigned int	get_pixel_img(t_sprite *img, int x, int y);
 t_Color			blend(t_Color src, t_Color dst);
 t_Color			int_to_color(int color);
 int				color_to_int(t_Color color);
+
+void			ft_cprint(char *color, char *str);
 
 #endif
