@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:48:53 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/01 15:26:59 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:43:46 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,5 @@ t_sprite	**ft_load_sprites(void *mlx)
 	sprites[3] = xpm_load_image(mlx, "textures/gate.xpm");
 	sprites[4] = xpm_load_image(mlx, "textures/cat_0.xpm");
 	ft_cprint(GREEN, "All sprites loaded sucessfully!\n");
-	return (sprites);
-}
-
-t_sprite	**ft_malloc_sprites()
-{
-	t_sprite	**sprites;
-
-	sprites = (t_sprite **) malloc(1 * sizeof(t_sprite *));
-	if (!sprites)
-		return (ft_print_error("Cannot allocate memory for sprites!", NULL), NULL);
 	return (sprites);
 }

@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:05:40 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/01 16:01:12 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:12:29 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ t_map	*ft_load_map(char *path)
 			map->width = ft_strlen(line) - 1;
 		map->grid[map->height] = ft_substr(line, 0, ft_strlen(line) - 1);
 		free(line);
-		// printf("%s", map->grid[map->height]);
 		map->height++;
 	}
 	close(fd);
@@ -143,22 +142,24 @@ t_sprite	*ft_process_map(t_so_long *so_long, t_map *map)
 
 				case '1':
 					put_img_to_img(img, so_long->sprites[1], x * 100, y * 100);
-					// mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[1]->img, x * 100, y * 100);
+					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[1]->img, x * 100, y * 100);
 					break ;
 
 				case 'C':
 					put_img_to_img(img, so_long->sprites[2], x * 100, y * 100);
-					// mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[2]->img, x * 100, y * 100);
+					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[2]->img, x * 100, y * 100);
 					break ;
 
 				case 'E':
 					put_img_to_img(img, so_long->sprites[3], x * 100, y * 100);
-					// mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[3]->img, x * 100, y * 100);
+					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[3]->img, x * 100, y * 100);
 					break ;
 
 				case 'P':
 					put_img_to_img(img, so_long->sprites[4], x * 100, y * 100);
-					// mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[4]->img, x * 100, y * 100);
+					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[4]->img, x * 100, y * 100);
+					so_long->player_pos.x = x;
+					so_long->player_pos.y = y;
 					break ;
 
 				default:
@@ -174,4 +175,44 @@ t_sprite	*ft_process_map(t_so_long *so_long, t_map *map)
 	}
 	ft_cprint(GREEN, "Map sprite generated successfully!\n");
 	return (img);
+}
+
+t_map	*ft_copy_map(t_map *dest, t_map *src)
+{
+	int	y;
+
+	dest->grid = (char **) malloc(src->height * sizeof(char *));
+	if (!dest->grid)
+		return (NULL);
+	y = 0;
+	while (y < src->height)
+	{
+		ft_strlcpy(dest->grid[y], src->grid[y], src->width + 1);
+		y++;
+	}
+	return (dest);
+}
+
+t_map	*ft_map_update(t_so_long *so_long ,t_map *map, int x, int y)
+{
+	char	c;
+	t_point	p_current;
+
+	p_current = so_long->player_pos;
+	if (p_current.x + x > map->width || p_current.x + x < 0)
+		return (map);
+	if (p_current.y + y > map->height || p_current.y + y < 0)
+		return (map);
+	if (map->grid[p_current.y + y][p_current.x + x] == '1')
+		return (map);
+	c = map->grid[p_current.y + y][p_current.x + x];
+	map->grid[p_current.y + y][p_current.x + x] = 'P';
+	map->grid[p_current.y][p_current.x] = c;
+
+	// mlx_clear_window(so_long->mlx, so_long->win);
+	ft_process_map(so_long, map);
+
+	// mlx_string_put(so_long->mlx, so_long->win, 0, 0, 0xFF000000, "Hello world!");
+
+	return (map);
 }

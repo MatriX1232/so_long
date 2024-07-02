@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:47:06 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/01 23:37:56 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:43:19 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ int	ft_EXIT(t_so_long *so_long)
 {
 	int	i;
 
-	printf("Closing window and freeing assets!\n");
+	ft_cprint(PURPLE, "Closing window and freeing assets!\n");
 
-	i = 0;
-	while (so_long->map->grid[i])
-	{
-		if (so_long->map->grid[i])
-			free(so_long->map->grid[i++]);
-	}
+	// i = 0;
+	// while (so_long->map->grid[i])
+	// {
+	// 	if (so_long->map->grid[i])
+	// 		free(so_long->map->grid[i++]);
+	// }
 	free(so_long->map->grid);
 	free(so_long->map);
-	ft_cprint(PURPLE, "Map freed\n");
+	ft_cprint(PURPLE, "Map freed!\n");
 
-	i = 0;
+	i = 1;
 	while (i < 5)
 	{
 		mlx_destroy_image(so_long->mlx, so_long->sprites[i]->img);
@@ -48,9 +48,11 @@ int	ft_EXIT(t_so_long *so_long)
 	}
 	free(so_long->sprites);
 
-	printf("All assets freed!\n");
+	ft_cprint(PURPLE, "All assets freed!\n");
 
 	mlx_destroy_window(so_long->mlx, so_long->win);
+
+	ft_cprint(PURPLE, "Window destroyed!\n");
 
 	exit(0);
 

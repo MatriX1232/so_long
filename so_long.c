@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/01 17:18:44 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:00:21 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@ int	keyhook(int keycode, t_so_long *so_long)
 	if (!so_long)
 		return (0);
 	printf("Key pressed: %c | %d\n", keycode, keycode);
+
+	if (keycode == 'w')
+		so_long->map = ft_map_update(so_long, so_long->map, 0, -1);
+	if (keycode == 's')
+		so_long->map = ft_map_update(so_long, so_long->map, 0, 1);
+	if (keycode == 'a')
+		so_long->map = ft_map_update(so_long, so_long->map, -1, 0);
+	if (keycode == 'd')
+		so_long->map = ft_map_update(so_long, so_long->map, 1, 0);
 	return (0);
 }
 
@@ -39,6 +48,7 @@ int	main()
 	// player = xpm_load_image(so_long.mlx, "textures/cat_0.xpm");
 
 	so_long.map = ft_load_map("maps/mini4.ber");
+	// so_long.backup_map = ft_load_map("maps/1.ber");
 	printf("<MAP> | Width: %d | Height: %d\n", so_long.map->width, so_long.map->height);
 	map_width = so_long.map->width * 100;
 	map_height = so_long.map->height * 100;
@@ -61,8 +71,8 @@ int	main()
 	so_long.sprites = ft_load_sprites(so_long.mlx);
 
 	mainBG = ft_process_map(&so_long, so_long.map);
-	if (!mainBG) write(1, "", 1);
-	// put_img_to_img(&so_long.main_img, mainBG, 0, 0);
+	// if (!mainBG) write(1, "", 1);
+	put_img_to_img(&so_long.main_img, mainBG, 0, 0);
 	// mlx_put_image_to_window(so_long.mlx, so_long.win, mainBG, 0, 0);
 
 	// for (int y=0; y < 3; y++)

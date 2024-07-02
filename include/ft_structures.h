@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:24:04 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/28 14:13:57 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:01:34 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_so_long
 	t_queue		queue;
 	t_map		*map;
 	t_sprite	**sprites;
+	t_point		player_pos;
 }	t_so_long;
 
 #endif
