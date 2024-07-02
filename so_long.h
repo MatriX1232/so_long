@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:12:24 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/02 17:58:31 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:32:32 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define GREY '\x1b[30m'
 # define RED "\x1b[31m"
 # define GREEN "\x1b[32m"
-# define YELLOW '\x1b[33m'
-# define BLUE '\x1b[34m'
+# define YELLOW "\x1b[33m"
+# define BLUE "\x1b[34m"
 # define PURPLE "\x1b[35m"
-# define CYAN '\x1b[36m'
+# define CYAN "\x1b[36m"
 # define WHITE '\x1b[37m'
 
 # define BPX 100

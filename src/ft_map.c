@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:05:40 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/02 18:12:29 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:03:28 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ t_sprite	*ft_process_map(t_so_long *so_long, t_map *map)
 			{
 				case '0':
 					// put_img_to_img(img, so_long->sprites[0], x * 100, y * 100);
+					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[0]->img, x * 100, y * 100);
 					break ;
 
 				case '1':
@@ -147,6 +148,7 @@ t_sprite	*ft_process_map(t_so_long *so_long, t_map *map)
 
 				case 'C':
 					put_img_to_img(img, so_long->sprites[2], x * 100, y * 100);
+					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[0]->img, x * 100, y * 100);
 					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[2]->img, x * 100, y * 100);
 					break ;
 
