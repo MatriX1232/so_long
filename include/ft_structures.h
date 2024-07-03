@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:24:04 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/02 18:01:34 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:31:56 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,10 @@ typedef struct s_so_long
 	t_sprite	main_img;
 	t_queue		queue;
 	t_map		*map;
+	t_map		*backup_map;
 	t_sprite	**sprites;
 	t_point		player_pos;
+	int			coins;
 }	t_so_long;
 
 #endif

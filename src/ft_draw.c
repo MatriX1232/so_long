@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:03:20 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/01 12:29:15 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:58:44 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,13 @@ void	put_img_to_img(t_sprite *dst, t_sprite *src, int x, int y)
 		}
 		i++;
 	}
+}
+void	ft_print_coins(t_so_long *so_long)
+{
+	char	*str;
+
+	str = ft_strdup("COINS: ");
+	str = ft_strjoin(str, ft_itoa(so_long->coins));
+	mlx_string_put(so_long->mlx, so_long->win, 10, 30, 0x00FF00, str);
+	free(str);
 }

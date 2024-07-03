@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/02 18:00:21 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:54:20 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,17 @@ int	main()
 	t_so_long	so_long;
 	int			map_width;
 	int			map_height;
-	// int			map_width_tiles = 10 / 2;
-	// int			map_height_tiles = 6 / 2;
-	// t_sprite	*background;
-	// t_sprite	*player;
 	t_sprite	*mainBG;
 
 	so_long.mlx = mlx_init();
+	so_long.coins = 0;
 
 	// background = xpm_load_image(so_long.mlx, "textures/gate.xpm");
 	// player = xpm_load_image(so_long.mlx, "textures/cat_0.xpm");
 
 	so_long.map = ft_load_map("maps/mini4.ber");
+	so_long.backup_map = ft_copy_map(so_long.backup_map, so_long.map);
+
 	// so_long.backup_map = ft_load_map("maps/1.ber");
 	printf("<MAP> | Width: %d | Height: %d\n", so_long.map->width, so_long.map->height);
 	map_width = so_long.map->width * 100;
@@ -72,7 +71,7 @@ int	main()
 
 	mainBG = ft_process_map(&so_long, so_long.map);
 	// if (!mainBG) write(1, "", 1);
-	put_img_to_img(&so_long.main_img, mainBG, 0, 0);
+	// put_img_to_img(&so_long.main_img, mainBG, 0, 0);
 	// mlx_put_image_to_window(so_long.mlx, so_long.win, mainBG, 0, 0);
 
 	// for (int y=0; y < 3; y++)

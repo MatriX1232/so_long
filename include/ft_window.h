@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:48:04 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/06/28 13:54:35 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:59:32 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ enum
 
 int	ft_EXIT(t_so_long *so_long);
 int	ft_RESIZE(int width, int height, t_so_long *so_long);
+int	ft_ON_WIN(t_so_long *so_long);
 
 #endif

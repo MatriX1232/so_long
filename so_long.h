@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:12:24 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/02 19:32:32 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:22:40 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ t_Color			int_to_color(int color);
 int				color_to_int(t_Color color);
 
 void			ft_cprint(char *color, char *str);
+void			ft_print_coins(t_so_long *so_long);
 
 #endif
