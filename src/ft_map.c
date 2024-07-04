@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:05:40 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/04 12:15:29 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:01:40 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ t_map	*ft_load_map(char *path)
 			map->width = ft_strlen(line) - 1;
 		map->grid[map->height++] = ft_substr(line, 0, ft_strlen(line) - 1);
 		free(line);
-		// map->height++;
 	}
 	close(fd);
 	ft_cprint(GREEN, "Map loaded successfully!\n");
@@ -164,37 +163,4 @@ t_map	*ft_copy_map(t_map *dest, t_map *src)
 	dest->height = src->height;
 	ft_cprint(GREEN, "Map copied successfully!\n");
 	return (dest);
-}
-
-t_map	*ft_map_update(t_so_long *so_long ,t_map *map, int x, int y)
-{
-	char	c;
-	t_point	p_current;
-
-	p_current = so_long->player_pos;
-	if (p_current.x + x > map->width || p_current.x + x < 0)
-		return (map);
-	if (p_current.y + y > map->height || p_current.y + y < 0)
-		return (map);
-	if (map->grid[p_current.y + y][p_current.x + x] == '1')
-		return (map);
-
-	c = map->grid[p_current.y + y][p_current.x + x];
-	if (c == 'C')
-	{
-		so_long->coins++;
-		so_long->backup_map->grid[p_current.y + y][p_current.x + x] = '0';
-	}
-	else if (c == 'E')
-		ft_ON_WIN(so_long);
-
-	map->grid[p_current.y + y][p_current.x + x] = 'P';
-	map->grid[p_current.y][p_current.x] = so_long->backup_map->grid[p_current.y][p_current.x];
-	so_long->player_pos.x = p_current.x + x;
-	so_long->player_pos.y = p_current.y + y;
-
-	ft_process_map(so_long, map);
-	ft_print_coins(so_long);
-
-	return (map);
 }
