@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:03:20 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/03 16:58:44 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/04 12:03:50 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	put_pixel_img(t_sprite *img, int x, int y, int color)
 		return ;
 	if (x >= 0 && y >= 0 && x < img->width && y < img->height)
 	{
-		dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+		dst = img->addr + (y * img->line_length + \
+				x * (img->bits_per_pixel / 8));
 		*(unsigned int *) dst = color;
 	}
 }
@@ -48,12 +49,15 @@ void	put_img_to_img(t_sprite *dst, t_sprite *src, int x, int y)
 		i++;
 	}
 }
+
 void	ft_print_coins(t_so_long *so_long)
 {
 	char	*str;
+	char	*coins;
 
-	str = ft_strdup("COINS: ");
-	str = ft_strjoin(str, ft_itoa(so_long->coins));
+	coins = ft_itoa(so_long->coins);
+	str = ft_strjoin("COINS: ", coins);
 	mlx_string_put(so_long->mlx, so_long->win, 10, 30, 0x00FF00, str);
 	free(str);
+	free(coins);
 }

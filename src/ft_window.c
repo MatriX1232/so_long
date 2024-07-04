@@ -6,11 +6,17 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:47:06 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/03 17:01:23 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/04 10:18:40 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_window.h"
+
+int	ft_NULL_HOOK(void *parm)
+{
+	(void)parm;
+	return (0);
+}
 
 int	ft_RESIZE(int width, int height, t_so_long *so_long)
 {
@@ -27,11 +33,15 @@ int	ft_RESIZE(int width, int height, t_so_long *so_long)
 int	ft_ON_WIN(t_so_long *so_long)
 {
 	char	*str;
+	char	*coins;
 
-	str = ft_strjoin("SCORE: ", ft_itoa(so_long->coins));
+	mlx_key_hook(so_long->win, ft_NULL_HOOK, NULL);
+	coins = ft_itoa(so_long->coins);
+	str = ft_strjoin("SCORE: ", coins);
 	mlx_clear_window(so_long->mlx, so_long->win);
 	mlx_string_put(so_long->mlx, so_long->win, (so_long->win_width / 2) - 50, (so_long->win_height / 2), 0x00FF00, str);
 	free(str);
+	free(coins);
 	// ft_EXIT(so_long);
 	return (0);
 }
@@ -46,10 +56,13 @@ int	ft_EXIT(t_so_long *so_long)
 	while (i < so_long->map->height)
 	{
 		free(so_long->map->grid[i]);
+		free(so_long->backup_map->grid[i]);
 		i++;
 	}
 	free(so_long->map->grid);
+	free(so_long->backup_map->grid);
 	free(so_long->map);
+	free(so_long->backup_map);
 	ft_cprint(CYAN, "Map freed! [1 / 3]\n");
 
 	i = 1;

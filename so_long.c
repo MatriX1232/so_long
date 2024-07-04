@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/03 16:54:20 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/04 12:12:04 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	main()
 	so_long.sprites = ft_load_sprites(so_long.mlx);
 
 	mainBG = ft_process_map(&so_long, so_long.map);
-	// if (!mainBG) write(1, "", 1);
+	if (!mainBG) write(1, "", 1);
 	// put_img_to_img(&so_long.main_img, mainBG, 0, 0);
 	// mlx_put_image_to_window(so_long.mlx, so_long.win, mainBG, 0, 0);
 
@@ -84,7 +84,7 @@ int	main()
 
 	// put_img_to_img(&so_long.main_img, so_long.sprites[4], 0, 0);
 
-	// mlx_put_image_to_window(so_long.mlx, so_long.win, so_long.main_img.img, 0, 0);
+	mlx_put_image_to_window(so_long.mlx, so_long.win, so_long.main_img.img, 0, 0);
 
 	mlx_key_hook(so_long.win, keyhook, &so_long);
 	mlx_hook(so_long.win, ON_DESTROY, 0, ft_EXIT, &so_long);
