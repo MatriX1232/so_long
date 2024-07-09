@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map.h                                           :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 13:08:22 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/09 17:19:35 by msolinsk         ###   ########.fr       */
+/*   Created: 2024/02/28 16:14:06 by msolinsk          #+#    #+#             */
+/*   Updated: 2024/03/12 19:41:36 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MAP_H
-# define FT_MAP_H
+#include "libft.h"
 
-# include "ft_structures.h"
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	int				ret;
+	unsigned char	*ss1;
+	unsigned char	*ss2;
 
-t_map		*ft_load_map(char *path);
-void		ft_print_error(char *error, char *path);
-void		ft_process_map(t_so_long *so_long, t_map *map);
-void		ft_map_switch(t_so_long *so_long, t_map *map, int x, int y);
-t_map		*ft_map_update(t_so_long *so_long, t_map *map, int x, int y);
-t_map		*ft_copy_map(t_map *dest, t_map *src);
-
-#endif
+	ss1 = (unsigned char *)s1;
+	ss2 = (unsigned char *)s2;
+	ret = 0;
+	while ((*ss1 || *ss2) && n > 0)
+	{
+		if (*ss1 != *ss2)
+		{
+			ret = *ss1 - *ss2;
+			break ;
+		}
+		n--;
+		ss1++;
+		ss2++;
+	}
+	return (ret);
+}

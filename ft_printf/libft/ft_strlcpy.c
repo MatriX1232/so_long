@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map.h                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 13:08:22 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/09 17:19:35 by msolinsk         ###   ########.fr       */
+/*   Created: 2024/02/28 16:14:06 by msolinsk          #+#    #+#             */
+/*   Updated: 2024/03/11 14:39:07 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MAP_H
-# define FT_MAP_H
+#include "libft.h"
 
-# include "ft_structures.h"
+size_t	ft_strlcpy(char *dest, char *src, size_t size)
+{
+	size_t	i;
 
-t_map		*ft_load_map(char *path);
-void		ft_print_error(char *error, char *path);
-void		ft_process_map(t_so_long *so_long, t_map *map);
-void		ft_map_switch(t_so_long *so_long, t_map *map, int x, int y);
-t_map		*ft_map_update(t_so_long *so_long, t_map *map, int x, int y);
-t_map		*ft_copy_map(t_map *dest, t_map *src);
-
-#endif
+	i = 0;
+	if (size)
+	{
+		while (*(src + i) != '\0' && i + 1 < size)
+		{
+			*(dest + i) = *(src + i);
+			i++;
+		}
+		*(dest + i) = '\0';
+	}
+	while (*(src + i) != '\0')
+	{
+		i++;
+	}
+	return (i);
+}

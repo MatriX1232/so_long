@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map.h                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 13:08:22 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/09 17:19:35 by msolinsk         ###   ########.fr       */
+/*   Created: 2024/03/05 11:57:44 by msolinsk          #+#    #+#             */
+/*   Updated: 2024/03/22 13:10:01 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MAP_H
-# define FT_MAP_H
+#include "libft.h"
 
-# include "ft_structures.h"
+char	*ft_strdup(const char *s)
+{
+	int			i;
+	char		*d;
+	const char	*ss;
 
-t_map		*ft_load_map(char *path);
-void		ft_print_error(char *error, char *path);
-void		ft_process_map(t_so_long *so_long, t_map *map);
-void		ft_map_switch(t_so_long *so_long, t_map *map, int x, int y);
-t_map		*ft_map_update(t_so_long *so_long, t_map *map, int x, int y);
-t_map		*ft_copy_map(t_map *dest, t_map *src);
-
-#endif
+	ss = s;
+	d = (char *) malloc((sizeof(char) * ft_strlen(ss)) + 1);
+	if (!d)
+		return (NULL);
+	if (*s == '\0')
+		*d = '\0';
+	i = 0;
+	while (*(ss + i))
+	{
+		*(d + i) = *(ss + i);
+		i++;
+	}
+	d[i] = '\0';
+	return (d);
+}

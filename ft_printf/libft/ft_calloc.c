@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map.h                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 13:08:22 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/09 17:19:35 by msolinsk         ###   ########.fr       */
+/*   Created: 2024/03/05 11:57:45 by msolinsk          #+#    #+#             */
+/*   Updated: 2024/05/06 13:30:33 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MAP_H
-# define FT_MAP_H
+#include "libft.h"
 
-# include "ft_structures.h"
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*array;
 
-t_map		*ft_load_map(char *path);
-void		ft_print_error(char *error, char *path);
-void		ft_process_map(t_so_long *so_long, t_map *map);
-void		ft_map_switch(t_so_long *so_long, t_map *map, int x, int y);
-t_map		*ft_map_update(t_so_long *so_long, t_map *map, int x, int y);
-t_map		*ft_copy_map(t_map *dest, t_map *src);
-
-#endif
+	if ((int)(nmemb * size) > 2147483647 || (int)(nmemb * size) < -2147483648)
+		return (NULL);
+	array = (void *) malloc(size * nmemb);
+	if (!array)
+		return (NULL);
+	ft_bzero(array, nmemb * size);
+	return (array);
+}

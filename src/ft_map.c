@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:05:40 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/04 13:01:40 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:21:49 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,16 @@ t_map	*ft_load_map(char *path)
 	return (map);
 }
 
-t_sprite	*ft_process_map(t_so_long *so_long, t_map *map)
+void	ft_process_map(t_so_long *so_long, t_map *map)
 {
-	int			y;
-	int			x;
-	t_sprite	*img;
+	int	y;
+	int	x;
 
 	if (!so_long || !map || !map->grid)
-		return (ft_print_error("Faced ERROR when processing map!", NULL), NULL);
-	img = (t_sprite *) malloc(1 * sizeof(t_sprite));
-	if (!img)
-		return (NULL);
-	img->img = mlx_new_image(so_long->mlx, so_long->win_width, so_long->win_height);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	img->width = map->width * 100;
-	img->height = map->height * 100;
+	{
+		ft_print_error("Faced ERROR when processing map!", NULL);
+		return ;
+	}
 	y = 0;
 	while (y < map->height)
 	{
@@ -96,71 +91,37 @@ t_sprite	*ft_process_map(t_so_long *so_long, t_map *map)
 		{
 			if (map->grid[y][x] == '\0')
 				break ;
-			switch (map->grid[y][x])
-			{
-				case '0':
-					put_img_to_img(&so_long->main_img, so_long->sprites[0], x * 100, y * 100);
-					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[0]->img, x * 100, y * 100);
-					break ;
-
-				case '1':
-					put_img_to_img(&so_long->main_img, so_long->sprites[1], x * 100, y * 100);
-					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[1]->img, x * 100, y * 100);
-					break ;
-
-				case 'C':
-					put_img_to_img(&so_long->main_img, so_long->sprites[2], x * 100, y * 100);
-					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[0]->img, x * 100, y * 100);
-					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[2]->img, x * 100, y * 100);
-					break ;
-
-				case 'E':
-					put_img_to_img(&so_long->main_img, so_long->sprites[3], x * 100, y * 100);
-					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[3]->img, x * 100, y * 100);
-					break ;
-
-				case 'P':
-					put_img_to_img(&so_long->main_img, so_long->sprites[4], x * 100, y * 100);
-					mlx_put_image_to_window(so_long->mlx, so_long->win, so_long->sprites[4]->img, x * 100, y * 100);
-					so_long->player_pos.x = x;
-					so_long->player_pos.y = y;
-					so_long->backup_map->grid[y][x] = '0';
-					break ;
-
-				default:
-					ft_cprint(RED, "Encountered not supportted character | ");
-					printf("%c | %d\n", map->grid[y][x], map->grid[y][x]);
-					// write(1, &map->grid[y][x], 1);
-					// write(1, "\n", 1);
-					break;
-			}
+			ft_map_switch(so_long, map, x, y);
 			x++;
 		}
 		y++;
 	}
-	// mlx_put_image_to_window(so_long->mlx, so_long->win, &so_long->main_img.img, 0, 0);
 	ft_cprint(GREEN, "Map sprite generated successfully!\n");
-	return (img);
 }
 
-t_map	*ft_copy_map(t_map *dest, t_map *src)
+void	ft_map_switch(t_so_long *so_long, t_map *map, int x, int y)
 {
-	int	y;
+	void	*mlx;
 
-	dest = (t_map *) malloc(1 * sizeof(t_map));
-	if (!dest)
-		return (NULL);
-	dest->grid = (char **) malloc(src->height * sizeof(char *));
-	if (!dest->grid)
-		return (NULL);
-	y = 0;
-	while (y < src->height)
+	mlx = so_long->mlx;
+	if (map->grid[y][x] == '0')
+		ft_pimg(mlx, so_long->win, so_long->sprites[0]->img, x * 100, y * 100);
+	else if (map->grid[y][x] == '1')
+		ft_pimg(mlx, so_long->win, so_long->sprites[1]->img, x * 100, y * 100);
+	else if (map->grid[y][x] == 'C')
+		ft_pimg(mlx, so_long->win, so_long->sprites[2]->img, x * 100, y * 100);
+	else if (map->grid[y][x] == 'E')
+		ft_pimg(mlx, so_long->win, so_long->sprites[3]->img, x * 100, y * 100);
+	else if (map->grid[y][x] == 'P')
 	{
-		dest->grid[y] = ft_substr(src->grid[y], 0, src->width);
-		y++;
+		ft_pimg(mlx, so_long->win, so_long->sprites[4]->img, x * 100, y * 100);
+		so_long->player_pos.x = x;
+		so_long->player_pos.y = y;
+		so_long->backup_map->grid[y][x] = '0';
 	}
-	dest->width = src->width;
-	dest->height = src->height;
-	ft_cprint(GREEN, "Map copied successfully!\n");
-	return (dest);
+	else
+	{
+		ft_cprint(RED, "Encountered not supportted character | ");
+		ft_printf("%c | %d\n", map->grid[y][x], map->grid[y][x]);
+	}
 }

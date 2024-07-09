@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map.h                                           :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 13:08:22 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/09 17:19:35 by msolinsk         ###   ########.fr       */
+/*   Created: 2024/02/28 16:14:06 by msolinsk          #+#    #+#             */
+/*   Updated: 2024/03/12 19:19:50 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MAP_H
-# define FT_MAP_H
+#include "libft.h"
 
-# include "ft_structures.h"
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
 
-t_map		*ft_load_map(char *path);
-void		ft_print_error(char *error, char *path);
-void		ft_process_map(t_so_long *so_long, t_map *map);
-void		ft_map_switch(t_so_long *so_long, t_map *map, int x, int y);
-t_map		*ft_map_update(t_so_long *so_long, t_map *map, int x, int y);
-t_map		*ft_copy_map(t_map *dest, t_map *src);
-
-#endif
+	i = 0;
+	if (*s == '\0' && c == '\0')
+	{
+		return ((char *)s);
+	}
+	while (*(s + i))
+	{
+		if (*(s + i) == c)
+		{
+			return ((char *)(s + i));
+		}
+		i++;
+	}
+	if (*(s + i) == c)
+	{
+		return ((char *)(s + i));
+	}
+	return (NULL);
+}

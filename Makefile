@@ -6,7 +6,7 @@
 #    By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 16:06:48 by msolinsk          #+#    #+#              #
-#    Updated: 2024/07/04 13:02:08 by msolinsk         ###   ########.fr        #
+#    Updated: 2024/07/09 17:04:01 by msolinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ MLXFLAGSO = -I/usr/include -Imlx_linux -O3
 MLXFLAGSN = -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -D LINUX -no-pie
 
 LIBFT_DIR = libft/
+PRINTF_DIR = ft_printf/
 MLX_DIR = mlx_linux/
-UTILS_DIR = src/utils/
 
 FILES = \
 		gnl/get_next_line.c \
@@ -31,6 +31,7 @@ FILES = \
 		src/ft_map.c \
 		src/ft_window.c \
 		src/ft_map2.c \
+		src/ft_free.c \
 
 OBJS = ${FILES:.c=.o}
 
@@ -45,18 +46,24 @@ compile_dep:
 	@cp $(MLX_DIR)/libmlx_Linux.a .
 	@mv $(MLX_DIR)/libmlx.a .
 	@mv $(MLX_DIR)/libmlx_Linux.a .
+
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT_DIR)/libft.a .
 	@mv $(LIBFT_DIR)/libft.a .
+
+	@make -C $(PRINTF_DIR)
+	@cp $(PRINTF_DIR)/libftprintf.a .
+	@mv $(PRINTF_DIR)/libftprintf.a .
 	echo "\n\n" $(OBJS) "\n\n"
 
 $(NAME): compile_dep $(OBJS)
-	$(CC) $(CFLAGS) $(MLXFLAGSN) so_long.c $(OBJS) libft.a libmlx.a libmlx_Linux.a -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXFLAGSN) so_long.c $(OBJS) libft.a libftprintf.a libmlx.a libmlx_Linux.a -o $(NAME)
 
 
 clean:
 	rm -f $(OBJS)
 	@make -C $(LIBFT_DIR) clean
+	@make -C $(PRINTF_DIR) clean
 	@make -C $(MLX_DIR) clean
 	@make -C $(MLX_TRANS) clean
 

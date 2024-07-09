@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:48:04 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/04 12:59:19 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:02:08 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ enum
 	ON_DESTROY = 17
 };
 
-int	ft_EXIT(t_so_long *so_long);
-int	ft_RESIZE(int width, int height, t_so_long *so_long);
-int	ft_ON_WIN(t_so_long *so_long);
+int		ft_exit(t_so_long *so_long);
+int		ft_resize(int width, int height, t_so_long *so_long);
+int		ft_on_win(t_so_long *so_long);
+
+void	ft_free_sprites(t_so_long *so_long);
+void	ft_free_map(t_so_long *so_long);
+void	ft_pimg(void *mlx, void *win, void *img_ptr, int x, int y);
 
 #endif
