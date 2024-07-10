@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:48:04 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 09:37:34 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/10 12:51:18 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ enum
 	ON_DESTROY = 17
 };
 
-int		ft_exit(t_so_long *so_long);
+int		ft_exit(t_so_long *so_long, int fMap, int fSprite, int fWin);
 int		ft_resize(int width, int height, t_so_long *so_long);
 int		ft_on_win(t_so_long *so_long);
 
