@@ -6,7 +6,7 @@
 #    By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 16:06:48 by msolinsk          #+#    #+#              #
-#    Updated: 2024/07/10 09:49:07 by msolinsk         ###   ########.fr        #
+#    Updated: 2024/07/10 12:52:21 by msolinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ FILES = \
 		src/ft_map2.c \
 		src/ft_free.c \
 		src/ft_game.c \
+		src/ft_file.c \
 
 OBJS = ${FILES:.c=.o}
 

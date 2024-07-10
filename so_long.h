@@ -6,11 +6,9 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:12:24 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/09 16:58:58 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:32:38 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#pragma once
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -25,7 +23,7 @@
 
 // minimal color codes
 # define END "\x1b[0m"
-# define BOLD '\x1b[1m'
+# define BOLD "\x1b[1m"
 # define UNDER '\x1b[4m'
 # define REV '\x1b[7m'
 # define GREY '\x1b[30m'
@@ -54,5 +52,7 @@ int				color_to_int(t_Color color);
 
 void			ft_cprint(char *color, char *str);
 void			ft_print_coins(t_so_long *so_long);
+
+int				ft_count_char(char c, char *str);
 
 #endif

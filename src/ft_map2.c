@@ -6,21 +6,13 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:26:21 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 09:24:53 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:26:57 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_map.h"
 #include "../include/ft_window.h"
-
-void	ft_print_error(char *error, char *path)
-{
-	write(1, (char *)RED, ft_strlen(RED));
-	write(1, error, ft_strlen(error));
-	write(1, path, ft_strlen(path));
-	write(1, (char *)END, ft_strlen(END));
-	write(1, "\n", 1);
-}
+#include "../include/ft_file.h"
 
 void	ft_move(t_so_long *so_long, t_map *map, int x, int y)
 {
@@ -57,6 +49,34 @@ t_map	*ft_map_update(t_so_long *so_long, t_map *map, int x, int y)
 	ft_process_map(so_long, map);
 	ft_print_coins(so_long);
 	return (map);
+}
+
+int	ft_check_map(t_map *map)
+{
+	int	y;
+	int	c_ex;
+	int	c_pl;
+
+	y = 0;
+	if (ft_count_char('1', map->grid[0]) != map->width)
+		return (ft_debug_log("Map is not closed!\n"), 0);
+	if (ft_count_char('1', map->grid[map->height - 1]) != map->width)
+		return (ft_debug_log("Map is not closed!\n"), 0);
+	c_ex = 0;
+	c_pl = 0;
+	while (y < map->height)
+	{
+		if (map->grid[y][0] != '1' || map->grid[y][map->width - 1] != '1')
+			return (ft_debug_log("Map is not closed!\n"), 0);
+		if ((int)ft_strlen(map->grid[y]) != map->width)
+			return (ft_debug_log("Map is not rectangular!\n"), 0);
+		c_ex += ft_count_char('E', map->grid[y]);
+		c_pl += ft_count_char('P', map->grid[y]);
+		y++;
+	}
+	if (c_ex != 1 || c_pl != 1)
+		return (ft_debug_log("Number of c_ex || c_pl is is not 1\n"), 0);
+	return (1);
 }
 
 t_map	*ft_copy_map(t_map *dest, t_map *src)

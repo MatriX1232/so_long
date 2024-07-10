@@ -6,13 +6,25 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:43:38 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 09:55:28 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:06:32 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_game.h"
 #include "../so_long.h"
 #include <stdlib.h>
+
+void	ft_parse_args(int argc)
+{
+	if (argc != 2)
+	{
+		ft_print_error("Bad number of arguments!\n", NULL);
+		ft_cprint(RED, "Program takes only one argument!\n");
+		ft_cprint(RED, "Usage: ./so_long 'path/to/map.ber'\n");
+		exit(1);
+	}
+	ft_cprint(GREEN, "Parameters correct!\n");
+}
 
 void	ft_win_init(t_so_long *so_long, int width, int height)
 {

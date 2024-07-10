@@ -6,21 +6,22 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:48:53 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/09 16:30:50 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:59:42 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+#include "../ft_printf/ft_printf.h"
 
 void	ft_print_img_info(t_sprite *img)
 {
 	if (img)
 	{
-		printf("Path: %s\n", img->path);
-		printf("Bits_per_pixel: %d\n", img->bits_per_pixel);
-		printf("Line_length: %d\n", img->line_length);
-		printf("Width | Height: %d x %d\n", img->width, img->height);
-		printf("Endian: %d\n\n", img->endian);
+		ft_printf("Path: %s\n", img->path);
+		ft_printf("Bits_per_pixel: %d\n", img->bits_per_pixel);
+		ft_printf("Line_length: %d\n", img->line_length);
+		ft_printf("Width | Height: %d x %d\n", img->width, img->height);
+		ft_printf("Endian: %d\n\n", img->endian);
 	}
 }
 
@@ -53,7 +54,7 @@ t_sprite	**ft_load_sprites(void *mlx)
 {
 	t_sprite	**sprites;
 
-	sprites = (t_sprite **) malloc(5 * sizeof(t_sprite *));
+	sprites = (t_sprite **) malloc(6 * sizeof(t_sprite *));
 	if (!sprites)
 	{
 		ft_print_error("Cannot allocate memory for sprites!", NULL);
@@ -64,6 +65,7 @@ t_sprite	**ft_load_sprites(void *mlx)
 	sprites[2] = xpm_load_image(mlx, "textures/coin_0.xpm");
 	sprites[3] = xpm_load_image(mlx, "textures/gate.xpm");
 	sprites[4] = xpm_load_image(mlx, "textures/cat_0.xpm");
+	sprites[5] = NULL;
 	ft_cprint(GREEN, "All sprites loaded sucessfully!\n");
 	return (sprites);
 }

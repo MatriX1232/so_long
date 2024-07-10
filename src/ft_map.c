@@ -6,17 +6,17 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:05:40 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 09:37:24 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:58:24 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../include/ft_map.h"
+#include "../include/ft_file.h"
 #include "../include/get_next_line.h"
 #include "../include/ft_window.h"
 #include <fcntl.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 int	ft_get_map_height(int fd)
 {
@@ -34,20 +34,18 @@ int	ft_get_map_height(int fd)
 	}
 }
 
-t_map	*ft_load_map(char *path)
+t_map	*ft_load_map(t_so_long *so_long, char *path)
 {
 	int		fd;
 	char	*line;
 	t_map	*map;
 
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		return (ft_print_error("ERROR when reading map: ", path), NULL);
+	fd = ft_fopen(so_long, path);
 	map = NULL;
 	map = ft_malloc_map(map, ft_get_map_height(fd));
 	map->height = 0;
 	close(fd);
-	fd = open(path, O_RDONLY);
+	fd = ft_fopen(so_long, path);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
