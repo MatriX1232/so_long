@@ -6,12 +6,21 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:26:21 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/09 17:02:34 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:24:53 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_map.h"
 #include "../include/ft_window.h"
+
+void	ft_print_error(char *error, char *path)
+{
+	write(1, (char *)RED, ft_strlen(RED));
+	write(1, error, ft_strlen(error));
+	write(1, path, ft_strlen(path));
+	write(1, (char *)END, ft_strlen(END));
+	write(1, "\n", 1);
+}
 
 void	ft_move(t_so_long *so_long, t_map *map, int x, int y)
 {
@@ -70,4 +79,15 @@ t_map	*ft_copy_map(t_map *dest, t_map *src)
 	dest->height = src->height;
 	ft_cprint(GREEN, "Map copied successfully!\n");
 	return (dest);
+}
+
+t_map	*ft_malloc_map(t_map *map, int height)
+{
+	map = (t_map *) malloc(sizeof(t_map));
+	if (!map)
+		return (NULL);
+	map->grid = (char **) malloc(height * sizeof(char *));
+	if (!map->grid)
+		return (free(map), NULL);
+	return (map);
 }

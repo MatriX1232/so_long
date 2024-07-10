@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:47:06 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/09 17:03:25 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:30:10 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_exit(t_so_long *so_long)
 	return (0);
 }
 
-void	ft_pimg(void *mlx, void *win, void *img_ptr, int x, int y)
+void	ft_pimg(void *mlx, void *win, void *img_ptr, t_point p)
 {
-	mlx_put_image_to_window(mlx, win, img_ptr, x, y);
+	mlx_put_image_to_window(mlx, win, img_ptr, p.x, p.y);
 }

@@ -6,9 +6,14 @@
 #    By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 16:06:48 by msolinsk          #+#    #+#              #
-#    Updated: 2024/07/09 17:04:01 by msolinsk         ###   ########.fr        #
+#    Updated: 2024/07/10 09:49:07 by msolinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+COLOUR_GREEN=\033[0;32m
+COLOUR_RED=\033[0;31m
+COLOUR_BLUE=\033[0;34m
+COLOUR_END=\033[0m
 
 NAME = so_long
 
@@ -32,6 +37,7 @@ FILES = \
 		src/ft_window.c \
 		src/ft_map2.c \
 		src/ft_free.c \
+		src/ft_game.c \
 
 OBJS = ${FILES:.c=.o}
 
@@ -46,14 +52,17 @@ compile_dep:
 	@cp $(MLX_DIR)/libmlx_Linux.a .
 	@mv $(MLX_DIR)/libmlx.a .
 	@mv $(MLX_DIR)/libmlx_Linux.a .
+	@echo "$(COLOUR_GREEN)LIBMLX COMPILED SUCCESSFULLY\n$(COLOUR_END)"
 
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT_DIR)/libft.a .
 	@mv $(LIBFT_DIR)/libft.a .
+	@echo "$(COLOUR_GREEN)LIBFT COMPILED SUCCESSFULLY\n$(COLOUR_END)"
 
 	@make -C $(PRINTF_DIR)
 	@cp $(PRINTF_DIR)/libftprintf.a .
 	@mv $(PRINTF_DIR)/libftprintf.a .
+	@echo "$(COLOUR_GREEN)FT_PRINTF COMPILED SUCCESSFULLY\n$(COLOUR_END)"
 	echo "\n\n" $(OBJS) "\n\n"
 
 $(NAME): compile_dep $(OBJS)
