@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 15:27:04 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:30:56 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	keyhook(int keycode, t_so_long *so_long)
 		so_long->map = ft_map_update(so_long, so_long->map, -1, 0);
 	if (keycode == 'd')
 		so_long->map = ft_map_update(so_long, so_long->map, 1, 0);
+	if (keycode == 65307)
+		ft_exit(so_long, 1, 1, 1);
 	return (0);
 }
 
