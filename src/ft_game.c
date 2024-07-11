@@ -6,11 +6,12 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:43:38 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 13:06:32 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/11 12:35:18 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_game.h"
+#include "../include/ft_window.h"
 #include "../so_long.h"
 #include <stdlib.h>
 

@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:47:06 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 15:22:42 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:41:01 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 int	ft_null_hook(void *parm)
 {
 	(void)parm;
+	return (0);
+}
+
+int	ft_esc_hook(int keycode, t_so_long *so_long)
+{
+	if (keycode == 65307)
+		ft_exit(so_long, 1, 1, 1);
 	return (0);
 }
 
@@ -36,13 +43,18 @@ int	ft_on_win(t_so_long *so_long)
 	char	*str;
 	char	*coins;
 
+	mlx_clear_window(so_long->mlx, so_long->win);
 	mlx_key_hook(so_long->win, ft_null_hook, NULL);
+	mlx_key_hook(so_long->win, ft_esc_hook, so_long);
 	coins = ft_itoa(so_long->coins);
 	str = ft_strjoin("SCORE: ", coins);
-	mlx_clear_window(so_long->mlx, so_long->win);
+	// mlx_clear_window(so_long->mlx, so_long->win);
 	mlx_string_put(so_long->mlx, so_long->win, \
 		(so_long->win_width / 2) - 50, (so_long->win_height / 2), \
 			0x00FF00, str);
+	// mlx_string_put(so_long->mlx, so_long->win, \
+	// 	(so_long->win_width / 2) - 50, (so_long->win_height / 2) + 50, \
+	// 		0xFF0000, "GAME OVER");
 	free(str);
 	free(coins);
 	return (0);

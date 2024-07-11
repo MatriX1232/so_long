@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:26:21 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 15:26:57 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:03:20 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ t_map	*ft_map_update(t_so_long *so_long, t_map *map, int x, int y)
 		so_long->coins++;
 		so_long->backup_map->grid[p_current.y + y][p_current.x + x] = '0';
 	}
-	else if (c == 'E')
+	else if (c == 'E' || c == 'M')
 		ft_on_win(so_long);
+	so_long->moves++;
 	map->grid[p_current.y + y][p_current.x + x] = 'P';
 	map->grid[p_current.y][p_current.x] = so_long->\
 		backup_map->grid[p_current.y][p_current.x];
 	ft_process_map(so_long, map);
-	ft_print_coins(so_long);
+	ft_print_ui(so_long);
 	return (map);
 }
 
@@ -75,7 +76,7 @@ int	ft_check_map(t_map *map)
 		y++;
 	}
 	if (c_ex != 1 || c_pl != 1)
-		return (ft_debug_log("Number of c_ex || c_pl is is not 1\n"), 0);
+		return (ft_debug_log("Number of player or exits is not 1\n"), 0);
 	return (1);
 }
 
@@ -109,5 +110,6 @@ t_map	*ft_malloc_map(t_map *map, int height)
 	map->grid = (char **) malloc(height * sizeof(char *));
 	if (!map->grid)
 		return (free(map), NULL);
+	map->coins = 0;
 	return (map);
 }

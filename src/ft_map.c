@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:05:40 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 13:58:24 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:02:51 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void	ft_map_switch(t_so_long *so_long, t_map *map, int x, int y)
 		ft_pimg(mlx, so_long->win, so_long->sprites[2]->img, p);
 	else if (map->grid[y][x] == 'E')
 		ft_pimg(mlx, so_long->win, so_long->sprites[3]->img, p);
+	else if (map->grid[y][x] == 'M')
+		ft_pimg(mlx, so_long->win, so_long->sprites[5]->img, p);
 	else if (map->grid[y][x] == 'P')
 	{
 		ft_pimg(mlx, so_long->win, so_long->sprites[4]->img, p);

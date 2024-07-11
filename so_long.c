@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 15:30:56 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:58:51 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,23 @@ int	keyhook(int keycode, t_so_long *so_long)
 	return (0);
 }
 
+void	ft_init_vars(t_so_long *so_long, char *argv1)
+{
+	so_long->mlx = mlx_init();
+	so_long->coins = 0;
+	so_long->moves = 0;
+	so_long->sprites = ft_load_sprites(so_long->mlx);
+	so_long->map = ft_load_map(so_long, argv1);
+	so_long->backup_map = ft_copy_map(so_long->backup_map, so_long->map);
+	so_long->map->coins = ft_ccoins(so_long->map);
+	if (ft_check_map(so_long->map) == 0)
+	{
+		ft_cprint(RED, "Map is not valid!\n");
+		ft_exit(so_long, 1, 1, 0);
+	}
+	ft_cprint(GREEN, "ALL ASSETS READY TO USE!\n");
+}
+
 int	main(int argc, char *argv[])
 {
 	t_so_long	so_long;
@@ -41,16 +58,7 @@ int	main(int argc, char *argv[])
 	int			map_height;
 
 	ft_parse_args(argc);
-	so_long.mlx = mlx_init();
-	so_long.coins = 0;
-	so_long.sprites = ft_load_sprites(so_long.mlx);
-	so_long.map = ft_load_map(&so_long, argv[1]);
-	so_long.backup_map = ft_copy_map(so_long.backup_map, so_long.map);
-	if (ft_check_map(so_long.map) == 0)
-	{
-		ft_cprint(RED, "Map is not valid!\n");
-		ft_exit(&so_long, 1, 1, 0);
-	}
+	ft_init_vars(&so_long, argv[1]);
 	map_width = so_long.map->width * 100;
 	map_height = so_long.map->height * 100;
 	ft_win_init(&so_long, map_width, map_height);

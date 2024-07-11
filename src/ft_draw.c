@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:03:20 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/09 16:30:35 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/11 12:54:59 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,28 @@ void	put_img_to_img(t_sprite *dst, t_sprite *src, int x, int y)
 	}
 }
 
-void	ft_print_coins(t_so_long *so_long)
+void	ft_print_ui(t_so_long *so_long)
 {
 	char	*str;
 	char	*coins;
+	char	*all_coins;
+	char	*tmp;
+	char	*moves;
 
 	coins = ft_itoa(so_long->coins);
 	str = ft_strjoin("COINS: ", coins);
+	all_coins = ft_itoa(so_long->map->coins);
+	tmp = ft_strjoin(" / ", all_coins);
+	str = ft_strjoin(str, tmp);
 	mlx_string_put(so_long->mlx, so_long->win, 10, 30, 0x00FF00, str);
 	free(str);
 	free(coins);
+	free(all_coins);
+	free(tmp);
+	moves = ft_itoa(so_long->moves);
+	str = ft_strjoin("MOVES: ", moves);
+	mlx_string_put(so_long->mlx, so_long->win, 10, 50, 0x00FF00, str);
+	free(str);
+	free(moves);
+	ft_printf("%sNumber of moves: %d%s\n", YELLOW, so_long->moves, END);
 }

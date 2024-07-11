@@ -1,0 +1,39 @@
+/* XPM */
+static char * gameover_xpm[] = {
+"180 100 2 1",          /* width height num_colors chars_per_pixel */
+"  c #FFFFFF",          /* color #1: white */
+"R c #FF0000",          /* color #2: red */
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR    RRRR   RRRRRR   RRRRR  RRRRRR    RRRR      RRRR    RRRRR    RRRRRR  RRRRRR  ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR   RRRRR  RRRRRRR  RRRRRR  RRRRRR   RRRRR      RRRR   RRRRRR   RRRRRR  RRRRRR   ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR   RRRRR  RRRRRRR  RRRRRR  RRRRRR   RRRRR      RRRR   RRRRRR   RRRRRR  RRRRRR   ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR   RRRRR  RRRRRRR  RRRRRR  RRRRRR   RRRRR      RRRR   RRRRRR   RRRRRR  RRRRRR   ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR   RRRRR  RRRRRRR  RRRRRR  RRRRRR   RRRRR      RRRR   RRRRRR   RRRRRR  RRRRRR   ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR  RRRRR   RRRRRRR RRRRRR  RRRRRR  RRRRR      RRRRRR  RRRRRR   RRRRRR  RRRRRR   ",
+"  RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR  RRRRR  RRRRRRRRRRRRRRR RRRRRR  RRRRR      RRRRRR  RRRRRRRRRRRRRRR  RRRRRR   ",
+"  RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR  RRRRR  RRRRRRRRRRRRRRRRRRRRR  RRRRR      RRRRRR  RRRRRRRRRRRRRRR  RRRRRR   ",
+"  RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR  RRRRR RRRRRRRRRRRRRRRRRRRRRR  RRRRR     RRRRRRRRRRRRRRRRRRRRRRR  RRRRRR   ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRRRRRRRRR RRRRRR    RRRRRR  RRRRRR    RRRR      RRRR   RRRRRRRRRRRRRRRRRRRRR  ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRRRRRRRRRRRRRRR    RRRRRR  RRRRRR    RRRRR      RRRR   RRRRRRRRRRRRRRRRRRRRR  ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR  RRRRR  RRRRRR   RRRRRR  RRRRRR   RRRRR      RRRR   RRRRRRRRRRRRRRRRRRRRR  ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR  RRRRR  RRRRRR   RRRRRR  RRRRRR   RRRRR      RRRR   RRRRRR   RRRRRR  RRRRRR   ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR  RRRRR  RRRRRR   RRRRRR  RRRRRR   RRRRR      RRRR   RRRRRR   RRRRRR  RRRRRR   ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR   RRRRR  RRRRRR   RRRRR  RRRRRR   RRRRR      RRRR   RRRRRR   RRRRRR  RRRRRR   ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR   RRRRR  RRRRRR    RRRR  RRRRRR   RRRRR      RRRR   RRRRRR    RRRRR  RRRRRR   ",
+"  RRRRRR    RRRRR    RRRRRR  RRRRRR    RRRR   RRRRRR   RRRR  RRRRRR    RRRR      RRRR    RRRR     RRRR   RRRRR   ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  ",
+"                                                                                                                  "
+};

@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:33:37 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 14:58:19 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:29:36 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_free_sprites(t_so_long *so_long)
 	int	i;
 
 	i = 0;
-	while (i < 5)
+	while (i < 7)
 	{
 		mlx_destroy_image(so_long->mlx, so_long->sprites[i]->img);
 		free(so_long->sprites[i]);

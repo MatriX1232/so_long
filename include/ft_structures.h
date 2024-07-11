@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:24:04 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 15:01:18 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/11 12:39:35 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_map
 	char	**grid;
 	int		width;
 	int		height;
+	int		coins;
 }	t_map;
 
 typedef struct s_Color
@@ -82,6 +83,7 @@ typedef struct s_so_long
 	t_sprite	**sprites;
 	t_point		player_pos;
 	int			coins;
+	int			moves;
 }	t_so_long;
 
 #endif

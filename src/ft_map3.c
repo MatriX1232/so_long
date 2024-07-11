@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_game.h                                          :+:      :+:    :+:   */
+/*   ft_map3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 09:43:54 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/11 12:35:41 by msolinsk         ###   ########.fr       */
+/*   Created: 2024/07/11 12:08:50 by msolinsk          #+#    #+#             */
+/*   Updated: 2024/07/11 12:39:37 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GAME_H
-# define FT_GAME_H
+#include "../include/ft_map.h"
+#include "../so_long.h"
 
-# include "ft_structures.h"
+int	ft_ccoins(t_map *map)
+{
+	int	y;
+	int	count;
 
-void	ft_win_init(t_so_long *so_long, int width, int height);
-void	ft_parse_args(int argc);
-
-#endif
+	y = 0;
+	count = 0;
+	while (y < map->height)
+	{
+		count += ft_count_char('C', map->grid[y]);
+		y++;
+	}
+	return (count);
+}
