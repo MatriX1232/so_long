@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:26:21 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/11 13:03:20 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:14:50 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_map	*ft_map_update(t_so_long *so_long, t_map *map, int x, int y)
 		return (map);
 	if (p_current.y + y > map->height || p_current.y + y < 0)
 		return (map);
-	if (map->grid[p_current.y + y][p_current.x + x] == '1')
+	if (ft_check_if_move(so_long, map, (t_point){p_current.x + x, p_current.y + y}))
 		return (map);
 	c = map->grid[p_current.y + y][p_current.x + x];
 	if (c == 'C')
@@ -41,7 +41,7 @@ t_map	*ft_map_update(t_so_long *so_long, t_map *map, int x, int y)
 		so_long->coins++;
 		so_long->backup_map->grid[p_current.y + y][p_current.x + x] = '0';
 	}
-	else if (c == 'E' || c == 'M')
+	else if ((c == 'E' && so_long->coins == so_long->map->coins)|| c == 'M')
 		ft_on_win(so_long);
 	so_long->moves++;
 	map->grid[p_current.y + y][p_current.x + x] = 'P';
@@ -98,6 +98,7 @@ t_map	*ft_copy_map(t_map *dest, t_map *src)
 	}
 	dest->width = src->width;
 	dest->height = src->height;
+	dest->coins = src->coins;
 	ft_cprint(GREEN, "Map copied successfully!\n");
 	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:33:37 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/11 13:29:36 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:20:25 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,18 @@ void	ft_free_map(t_so_long *so_long)
 	free(so_long->map);
 	free(so_long->backup_map);
 	ft_cprint(CYAN, "Map freed! [1 / 3]\n");
+}
+
+void	ft_one_map_free(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->grid[i]);
+		i++;
+	}
+	free(map->grid);
+	free(map);
 }

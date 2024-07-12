@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:08:53 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/10 14:06:06 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:26:07 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_print_error(char *error, char *path)
 void	ft_debug_log(char *str)
 {
 	write(1, (char *)BOLD, ft_strlen(BOLD));
+	// write(1, "<DEBUG LOG>", ft_strlen("<DEBUG LOG>"));
 	ft_cprint(YELLOW, str);
 }
 

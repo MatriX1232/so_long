@@ -6,11 +6,12 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:03:20 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/11 12:54:59 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:03:08 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+#include "../include/ft_utils.h"
 
 unsigned int	get_pixel_img(t_sprite *img, int x, int y)
 {
@@ -55,23 +56,30 @@ void	ft_print_ui(t_so_long *so_long)
 	char	*str;
 	char	*coins;
 	char	*all_coins;
-	char	*tmp;
 	char	*moves;
 
 	coins = ft_itoa(so_long->coins);
-	str = ft_strjoin("COINS: ", coins);
+	coins = ft_strjoin_free("COINS: ", coins, 0, 1);
 	all_coins = ft_itoa(so_long->map->coins);
-	tmp = ft_strjoin(" / ", all_coins);
-	str = ft_strjoin(str, tmp);
+	all_coins = ft_strjoin_free(" / ", all_coins, 0, 1);
+	str = ft_strjoin_free(coins, all_coins, 1, 1);
 	mlx_string_put(so_long->mlx, so_long->win, 10, 30, 0x00FF00, str);
 	free(str);
-	free(coins);
-	free(all_coins);
-	free(tmp);
 	moves = ft_itoa(so_long->moves);
-	str = ft_strjoin("MOVES: ", moves);
+	str = ft_strjoin_free("MOVES: ", moves, 0, 1);
 	mlx_string_put(so_long->mlx, so_long->win, 10, 50, 0x00FF00, str);
 	free(str);
-	free(moves);
 	ft_printf("%sNumber of moves: %d%s\n", YELLOW, so_long->moves, END);
+}
+
+void	ft_print_map(t_map *map)
+{
+	int	y;
+
+	y = 0;
+	while (y < map->height)
+	{
+		ft_printf("%s\n", map->grid[y]);
+		y++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:08:22 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/11 12:36:44 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:14:35 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_MAP_H
 
 # include "ft_structures.h"
+# include <stdbool.h>
 
 t_map		*ft_load_map(t_so_long *so_long, char *path);
 void		ft_print_error(char *error, char *path);
@@ -24,5 +25,8 @@ t_map		*ft_copy_map(t_map *dest, t_map *src);
 t_map		*ft_malloc_map(t_map *map, int height);
 int			ft_check_map(t_map *map);
 int			ft_ccoins(t_map *map);
+int			ft_check_if_move(t_so_long *so_long, t_map *map, t_point p);
+void		ft_floodfill(t_map *map, int x, int y, char c_exit, bool *exit);
+t_point		ft_get_start_point(t_map *map);
 
 #endif

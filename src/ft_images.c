@@ -6,12 +6,13 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:48:53 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/11 13:29:27 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/12 13:26:25 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../ft_printf/ft_printf.h"
+#include "../include/ft_file.h"
 
 void	ft_print_img_info(t_sprite *img)
 {
@@ -47,6 +48,9 @@ t_sprite	*xpm_load_image(void *mlx, char *path)
 	ret->bits_per_pixel = bpp;
 	ret->line_length = ll;
 	ret->endian = ed;
+	ft_debug_log("\tImage loaded: ");
+	ft_debug_log(path);
+	write(1, "\n", 1);
 	return (ret);
 }
 

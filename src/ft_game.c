@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 09:43:38 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/11 12:35:18 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:27:19 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 #include "../so_long.h"
 #include <stdlib.h>
 
-void	ft_parse_args(int argc)
+void	ft_parse_args(t_so_long *so_long, int argc)
 {
 	if (argc != 2)
 	{
-		ft_print_error("Bad number of arguments!\n", NULL);
+		ft_cprint(RED, "Bad number of arguments!\n");
 		ft_cprint(RED, "Program takes only one argument!\n");
 		ft_cprint(RED, "Usage: ./so_long 'path/to/map.ber'\n");
-		exit(1);
+		free(so_long->mlx);
+		exit(0);
+		return ;
 	}
 	ft_cprint(GREEN, "Parameters correct!\n");
 }

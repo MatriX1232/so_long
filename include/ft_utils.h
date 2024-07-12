@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_game.h                                          :+:      :+:    :+:   */
+/*   ft_utils.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 09:43:54 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/12 18:25:23 by msolinsk         ###   ########.fr       */
+/*   Created: 2024/07/12 14:27:16 by msolinsk          #+#    #+#             */
+/*   Updated: 2024/07/12 18:03:37 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GAME_H
-# define FT_GAME_H
+#ifndef FT_UTILS_H
+# define FT_UTILS_H
 
 # include "ft_structures.h"
 
-void	ft_win_init(t_so_long *so_long, int width, int height);
-void	ft_parse_args(t_so_long *so_long, int argc);
+char	*ft_strjoin_free(char *s1, char *s2, int f1, int f2);
+void	ft_print_map(t_map *map);
 
 #endif
