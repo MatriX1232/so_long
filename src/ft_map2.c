@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:26:21 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/12 18:14:50 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:08:53 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,23 @@ int	ft_check_map(t_map *map)
 
 	y = 0;
 	if (ft_count_char('1', map->grid[0]) != map->width)
-		return (ft_debug_log("Map is not closed!\n"), 0);
+		return (ft_debug_log("Map is not closed UP!\n"), 0);
 	if (ft_count_char('1', map->grid[map->height - 1]) != map->width)
-		return (ft_debug_log("Map is not closed!\n"), 0);
+		return (ft_debug_log("Map is not closed DOWN!\n"), 0);
 	c_ex = 0;
 	c_pl = 0;
 	while (y < map->height)
 	{
 		if (map->grid[y][0] != '1' || map->grid[y][map->width - 1] != '1')
-			return (ft_debug_log("Map is not closed!\n"), 0);
+			return (ft_debug_log("Map is not closed MIDDLE\n"), 0);
 		if ((int)ft_strlen(map->grid[y]) != map->width)
 			return (ft_debug_log("Map is not rectangular!\n"), 0);
 		c_ex += ft_count_char('E', map->grid[y]);
 		c_pl += ft_count_char('P', map->grid[y]);
 		y++;
 	}
-	if (c_ex != 1 || c_pl != 1)
-		return (ft_debug_log("Number of player or exits is not 1\n"), 0);
+	if (c_ex != 1 || c_pl != 1 || map->coins < 1)
+		return (ft_debug_log("Number of player, exits or coins is not 1\n"), 0);
 	return (1);
 }
 

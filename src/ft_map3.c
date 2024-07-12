@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 12:08:50 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/12 18:16:38 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:59:55 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	ft_ccoins(t_map *map)
 
 	y = 0;
 	count = 0;
+	if (!map)
+		return (0);
 	while (y < map->height)
 	{
 		count += ft_count_char('C', map->grid[y]);
