@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:26:21 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/14 20:38:09 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/14 21:09:38 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_map	*ft_map_update(t_so_long *so_long, t_map *map, int x, int y)
 		so_long->backup_map->grid[p_cur.y + y][p_cur.x + x] = '0';
 	}
 	else if ((c == 'E' && so_long->coins == so_long->map->coins) || c == 'M')
-		return ((void)ft_on_win(so_long, (t_point){x, y}, c), map);
+		return ((void)ft_on_win(so_long, (t_point){x, y}), map);
 	so_long->moves++;
 	map->grid[p_cur.y + y][p_cur.x + x] = 'P';
 	map->grid[p_cur.y][p_cur.x] = so_long->\
