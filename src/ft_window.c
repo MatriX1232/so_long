@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:47:06 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/14 21:09:14 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/14 21:22:11 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_on_win(t_so_long *so_long, t_point p)
 	if (so_long->coins == so_long->map->coins && ft_cipem(so_long, p) == false)
 		ft_printf("\n\n%s%sCONGRATULATION, YOU WON!\n", BOLD, GREEN);
 	else
-		ft_printf("\n\n%s%sGAME OVER, YOU LOOSE\n", BOLD, RED);
+		ft_printf("\n\n%s%sGAME OVER, YOU LOSE\n", BOLD, RED);
 	ft_printf("SCORE: %d\n", so_long->coins);
 	ft_printf("NUMBER OF MOVES: %d%s\n", so_long->moves, END);
 	return (0);
