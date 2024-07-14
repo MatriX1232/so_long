@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:18:23 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/12 18:59:15 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/14 19:12:15 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_init_vars(t_so_long *so_long, char *argv1)
 	exit = False;
 	fmap = ft_copy_map(fmap, so_long->map);
 	s = ft_get_start_point(so_long->map);
-	ft_floodfill(fmap, s.x, s.y, 'E', &exit);
+	ft_floodfill(fmap, s, 'E', &exit);
 	if (ft_check_map(so_long->map) == 0 || exit == False)
 	{
 		if (exit == False)

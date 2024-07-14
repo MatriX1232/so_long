@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:26:21 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/12 19:08:53 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/14 20:38:09 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,27 @@ void	ft_move(t_so_long *so_long, t_map *map, int x, int y)
 t_map	*ft_map_update(t_so_long *so_long, t_map *map, int x, int y)
 {
 	char	c;
-	t_point	p_current;
+	t_point	p_cur;
 
-	p_current = so_long->player_pos;
-	if (p_current.x + x > map->width || p_current.x + x < 0)
+	p_cur = so_long->player_pos;
+	if (p_cur.x + x > map->width || p_cur.x + x < 0)
 		return (map);
-	if (p_current.y + y > map->height || p_current.y + y < 0)
+	if (p_cur.y + y > map->height || p_cur.y + y < 0)
 		return (map);
-	if (ft_check_if_move(so_long, map, (t_point){p_current.x + x, p_current.y + y}))
+	if (ft_check_if_move(so_long, map, (t_point){p_cur.x + x, p_cur.y + y}))
 		return (map);
-	c = map->grid[p_current.y + y][p_current.x + x];
+	c = map->grid[p_cur.y + y][p_cur.x + x];
 	if (c == 'C')
 	{
 		so_long->coins++;
-		so_long->backup_map->grid[p_current.y + y][p_current.x + x] = '0';
+		so_long->backup_map->grid[p_cur.y + y][p_cur.x + x] = '0';
 	}
-	else if ((c == 'E' && so_long->coins == so_long->map->coins)|| c == 'M')
-		ft_on_win(so_long);
+	else if ((c == 'E' && so_long->coins == so_long->map->coins) || c == 'M')
+		return ((void)ft_on_win(so_long, (t_point){x, y}, c), map);
 	so_long->moves++;
-	map->grid[p_current.y + y][p_current.x + x] = 'P';
-	map->grid[p_current.y][p_current.x] = so_long->\
-		backup_map->grid[p_current.y][p_current.x];
+	map->grid[p_cur.y + y][p_cur.x + x] = 'P';
+	map->grid[p_cur.y][p_cur.x] = so_long->\
+		backup_map->grid[p_cur.y][p_cur.x];
 	ft_process_map(so_long, map);
 	ft_print_ui(so_long);
 	return (map);

@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 15:03:20 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/12 18:03:08 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:20:53 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	ft_print_ui(t_so_long *so_long)
 	all_coins = ft_itoa(so_long->map->coins);
 	all_coins = ft_strjoin_free(" / ", all_coins, 0, 1);
 	str = ft_strjoin_free(coins, all_coins, 1, 1);
-	mlx_string_put(so_long->mlx, so_long->win, 10, 30, 0x00FF00, str);
+	mlx_string_put(so_long->mlx, so_long->win, 10, 30, 0xFF0000, str);
 	free(str);
 	moves = ft_itoa(so_long->moves);
 	str = ft_strjoin_free("MOVES: ", moves, 0, 1);
-	mlx_string_put(so_long->mlx, so_long->win, 10, 50, 0x00FF00, str);
+	mlx_string_put(so_long->mlx, so_long->win, 10, 50, 0xFF0000, str);
 	free(str);
 	ft_printf("%sNumber of moves: %d%s\n", YELLOW, so_long->moves, END);
 }

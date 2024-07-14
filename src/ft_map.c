@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:05:40 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/12 19:05:26 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:59:31 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,14 @@ t_map	*ft_load_map(t_so_long *so_long, char *path)
 	char	*line;
 	t_map	*map;
 
-	fd = ft_fopen(so_long, path);
-	map = NULL;
-	map = ft_malloc_map(map, ft_get_map_height(fd));
-	map->height = 0;
-	close(fd);
-	fd = ft_fopen(so_long, path);
+	line = NULL;
+	map = ft_load_init(so_long, path, &fd);
 	line = get_next_line(fd);
 	if (!line)
-		return (ft_cprint(RED, "Empty map!\n"), ft_exit(so_long, 0, 1, 0), NULL);
+	{
+		ft_cprint(RED, "Empty map!\n");
+		return (ft_exit(so_long, 0, 1, 0), NULL);
+	}
 	while (line != NULL)
 	{
 		if (map->height == 0)
@@ -89,29 +88,10 @@ void	ft_process_map(t_so_long *so_long, t_map *map)
 
 void	ft_map_switch(t_so_long *so_long, t_map *map, int x, int y)
 {
-	void	*mlx;
-	t_point	p;
+	bool	done;
 
-	mlx = so_long->mlx;
-	p.x = x * 100;
-	p.y = y * 100;
-	if (map->grid[y][x] == '0')
-		ft_pimg(mlx, so_long->win, so_long->sprites[0]->img, p);
-	else if (map->grid[y][x] == '1')
-		ft_pimg(mlx, so_long->win, so_long->sprites[1]->img, p);
-	else if (map->grid[y][x] == 'C')
-		ft_pimg(mlx, so_long->win, so_long->sprites[2]->img, p);
-	else if (map->grid[y][x] == 'E')
-		ft_pimg(mlx, so_long->win, so_long->sprites[3]->img, p);
-	else if (map->grid[y][x] == 'M')
-		ft_pimg(mlx, so_long->win, so_long->sprites[5]->img, p);
-	else if (map->grid[y][x] == 'P')
-	{
-		ft_pimg(mlx, so_long->win, so_long->sprites[4]->img, p);
-		so_long->player_pos = (t_point){x, y};
-		so_long->backup_map->grid[y][x] = '0';
-	}
-	else
+	done = ft_map_swich_main(so_long, map, x, y);
+	if (!done)
 	{
 		ft_cprint(RED, "Encountered not supportted character | ");
 		ft_printf("%c | %d\n", map->grid[y][x], map->grid[y][x]);

@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 12:08:50 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/12 18:59:55 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:07:08 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,35 @@ int	ft_ccoins(t_map *map)
 
 int	ft_check_if_move(t_so_long *so_long, t_map *map, t_point p)
 {
+	bool	flag;
+
+	flag = false;
+	if (so_long->coins != so_long->map->coins)
+		flag = true;
 	if (map->grid[p.y][p.x] == '1')
 		return (1);
-	else if (map->grid[p.y][p.x] == 'E' && (so_long->coins != so_long->map->coins))
+	else if (map->grid[p.y][p.x] == 'E' && flag)
 		return (1);
 	return (0);
 }
 
-void	ft_floodfill(t_map *map, int x, int y, char c_exit, bool *exit)
+void	ft_floodfill(t_map *map, t_point p, char c_exit, bool *exit)
 {
-	if (x < 0 || y < 0 || x >= map->width || y >= map->height)
+	if (p.x < 0 || p.y < 0 || p.x >= map->width || p.y >= map->height)
 		return ;
-	if (map->grid[y][x] == 'V' || map->grid[y][x] == '1') // V for visited, 1 for wall
-		return;
-	if (map->grid[y][x] == c_exit)
+	if (map->grid[p.y][p.x] == 'V' || map->grid[p.y][p.x] == '1')
+		return ;
+	if (map->grid[p.y][p.x] == c_exit)
 	{
-		ft_debug_log("<FloodFill> Got exit point\n");
+		ft_debug_log("\t<DEBUG_LOG> <FloodFill> Got exit point\n");
 		*exit = True;
 		return ;
 	}
-	map->grid[y][x] = 'V';
-	ft_floodfill(map, x - 1, y, c_exit, exit);
-	ft_floodfill(map, x + 1, y, c_exit, exit);
-	ft_floodfill(map, x, y - 1, c_exit, exit);
-	ft_floodfill(map, x, y + 1, c_exit, exit);
+	map->grid[p.y][p.x] = 'V';
+	ft_floodfill(map, (t_point){p.x - 1, p.y}, c_exit, exit);
+	ft_floodfill(map, (t_point){p.x + 1, p.y}, c_exit, exit);
+	ft_floodfill(map, (t_point){p.x, p.y - 1}, c_exit, exit);
+	ft_floodfill(map, (t_point){p.x, p.y + 1}, c_exit, exit);
 }
 
 t_point	ft_get_start_point(t_map *map)
