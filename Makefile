@@ -6,7 +6,7 @@
 #    By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 16:06:48 by msolinsk          #+#    #+#              #
-#    Updated: 2024/07/14 19:18:22 by msolinsk         ###   ########.fr        #
+#    Updated: 2024/07/14 21:34:08 by msolinsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ COLOUR_END=\033[0m
 
 NAME = so_long
 
-CC = clang
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./include/
 
 MLXFLAGSO = -I/usr/include -Imlx_linux -O3
